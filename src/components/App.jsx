@@ -14,8 +14,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
-          <Route path="/catalog" element={<Cars />} />
-          <Route path="/favorites" element={<FavoriteCar />} />
+          <Route path="catalog" element={<Cars />} />
+          <Route path="favorites" element={<FavoriteCar />} />
 
           <Route path="*" element={<Home />} />
         </Route>
