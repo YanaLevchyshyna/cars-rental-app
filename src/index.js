@@ -11,7 +11,6 @@ import { theme } from './constants/Theme';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <BrowserRouter> */}
     <BrowserRouter basename="/cars-rental-app">
       <ThemeProvider theme={theme}>
         <Provider store={store}>

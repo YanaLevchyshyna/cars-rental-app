@@ -17,6 +17,8 @@ export const CarsListEl = styled.ul`
 `;
 
 export const ListItem = styled.li`
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 8px;

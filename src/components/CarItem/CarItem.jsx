@@ -1,8 +1,16 @@
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
-import defaultCar from '../DefaultImage/defaultCar1.jpeg';
-
+import { selectFavorite } from '../../redux/selectors';
 import {
+  addCarToFavorite,
+  deleteCarFromFavorite,
+} from '../../redux/favoriteSlice';
+import sprite from '../../constants/sprite.svg';
+import defaultCar from '../DefaultImage/defaultCar1.jpeg';
+import {
+  HeartSvg,
+  HeartButton,
   FirstItemWrapper,
   Span,
   FirstList,
@@ -11,6 +19,20 @@ import {
 } from './CarItem.styled';
 
 export default function CarItem({ car }) {
+  const dispatch = useDispatch();
+  const favorite = useSelector(selectFavorite);
+  const isCarAdded = favorite.some((item) => item.id === car.id);
+
+  const handleToggleFavorite = (e) => {
+    e.stopPropagation();
+
+    if (isCarAdded) {
+      dispatch(deleteCarFromFavorite(car.id));
+    } else {
+      dispatch(addCarToFavorite(car));
+    }
+  };
+
   const {
     make,
     model,
@@ -29,6 +51,11 @@ export default function CarItem({ car }) {
 
   return (
     <>
+      <HeartButton onClick={handleToggleFavorite} top="14px" right="14px">
+        <HeartSvg>
+          <use href={`${sprite}#icon-heart`} />
+        </HeartSvg>
+      </HeartButton>
       <img src={img || defaultCar} alt={make} />
       <FirstItemWrapper>
         <p>

@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { selectCars, selectPage } from '../../redux/selectors';
 import { getCars } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
-
 import { loadMoreCars } from '../../redux/carsSlice';
 
 import {
@@ -18,7 +17,6 @@ import {
 export default function CarsList() {
   const cars = useSelector(selectCars);
   const page = useSelector(selectPage);
-  // const limit = useSelector(selectLimit);
 
   const dispatch = useDispatch();
 

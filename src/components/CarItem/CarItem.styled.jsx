@@ -1,5 +1,30 @@
 import styled from '@emotion/styled';
 
+export const HeartButton = styled.button`
+  position: absolute;
+  top: ${(props) => props.top || 'calc(50% - 18px / 2)'};
+  right: ${(props) => props.right || '14px'};
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: ${(props) => props.theme.borders.none};
+  background: ${(props) => props.theme.colors.primary};
+
+  cursor: pointer;
+`;
+
+export const HeartSvg = styled.svg`
+  stroke: #ffffff;
+  fill: transparent;
+  width: 18px;
+  height: 18px;
+
+  &:hover,
+  &:focus {
+    stroke: '#3470FF';
+  }
+`;
+
 export const FirstItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
