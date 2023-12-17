@@ -56,7 +56,7 @@ export default function CarItem({ car }) {
           <use href={`${sprite}#icon-heart`} />
         </HeartSvg>
       </HeartButton>
-      <img src={img || defaultCar} alt={make} />
+      <img src={img ? img : defaultCar} alt={make} />
       <FirstItemWrapper>
         <p>
           {make} <Span>{model}</Span>
