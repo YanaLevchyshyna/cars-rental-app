@@ -13,11 +13,7 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 99d7880c3a4be192c8b2aed1e03b3b4fa6d2f735
       - name: Build the App 🔧
         run: npm run build
 
