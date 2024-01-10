@@ -4,7 +4,6 @@ function Cars() {
   return (
     <>
       <main>
-        <h1>Cars</h1>
         <CarsList />
       </main>
     </>
