@@ -8,21 +8,16 @@ export const HeartButton = styled.button`
   align-items: center;
   padding: 0;
   border: ${(props) => props.theme.borders.none};
-  background: ${(props) => props.theme.colors.primary};
+  background-color: transparent;
 
   cursor: pointer;
 `;
 
 export const HeartSvg = styled.svg`
-  stroke: #ffffff;
   fill: transparent;
+  stroke: #ffffff;
   width: 18px;
   height: 18px;
-
-  &:hover,
-  &:focus {
-    stroke: '#3470FF';
-  }
 `;
 
 export const FirstItemWrapper = styled.div`

@@ -53,7 +53,7 @@ export default function CarItem({ car }) {
     <>
       <HeartButton onClick={handleToggleFavorite} top="14px" right="14px">
         <HeartSvg>
-          <use href={`${sprite}#icon-heart`} />
+          <use href={sprite + '#icon-heart'} />
         </HeartSvg>
       </HeartButton>
       <img src={img ? img : defaultCar} alt={make} />
