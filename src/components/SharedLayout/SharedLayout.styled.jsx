@@ -25,7 +25,7 @@ export const HeaderContainer = styled.div`
 export const Link = styled(NavLink)`
   display: inline-block;
   text-decoration: none;
-  margin-left: 10px;
+  margin-left: 40px;
   font-weight: 600;
   font-size: 22px;
   position: relative;
@@ -37,7 +37,7 @@ export const Link = styled(NavLink)`
     position: absolute;
     left: 0;
     bottom: 0.06em;
-    height: 0.2em;
+    height: 0.1em;
     width: 100%;
     background: linear-gradient(110deg, #6cb8ea, #0b44cd);
     z-index: -1;
