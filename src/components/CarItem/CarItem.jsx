@@ -52,7 +52,7 @@ export default function CarItem({ car }) {
   return (
     <>
       <HeartButton onClick={handleToggleFavorite} top="14px" right="14px">
-        <HeartSvg>
+        <HeartSvg isFavorite={isCarAdded}>
           <use href={sprite + '#icon-heart'} />
         </HeartSvg>
       </HeartButton>

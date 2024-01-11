@@ -14,7 +14,7 @@ export const HeartButton = styled.button`
 `;
 
 export const HeartSvg = styled.svg`
-  fill: transparent;
+  fill: ${(props) => (props.isFavorite ? '#3470FF' : 'transparent')};
   stroke: ${(props) => props.theme.colors.primary};
   width: 18px;
   height: 18px;
