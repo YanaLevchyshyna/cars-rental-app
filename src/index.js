@@ -1,10 +1,12 @@
-import './index.css';
 import React from 'react';
+import { PersistGate } from 'redux-persist/integration/react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { store, persistor } from './redux/store';
+
+import './index.css';
 
 import App from './components/App';
 import { theme } from './constants/Theme';
@@ -14,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter basename="/cars-rental-app">
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          <App />
+          <PersistGate loading={null} persistor={persistor}>
+            <App />
+          </PersistGate>
         </Provider>
       </ThemeProvider>
     </BrowserRouter>
