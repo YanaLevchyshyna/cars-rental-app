@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkcars_rental_app=self.webpackChunkcars_rental_app||[]).push([[642],{642:(r,a,e)=>{e.r(a),e.d(a,{default:()=>s});var n=e(329);const s=function(){return(0,n.jsx)(n.Fragment,{children:(0,n.jsx)("main",{children:(0,n.jsx)("h1",{children:"Your favorite cars"})})})}}}]);
+//# sourceMappingURL=642.19f55ef4.chunk.js.map
