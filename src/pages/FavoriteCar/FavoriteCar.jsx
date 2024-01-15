@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { selectFavorite } from '../../redux/selectors';
 
-// import CarFavoriteItem from '../../components/CarFavoriteItem/CarFavoriteItem';
 import CarItem from '../../components/CarItem/CarItem';
+import { Section, CarsList, ListItem } from './FavoriteCar.styled';
 
 function FavoriteCars() {
   const favoriteCar = useSelector(selectFavorite);
@@ -16,15 +16,15 @@ function FavoriteCars() {
     <>
       <main>
         <h1>Your favorite cars</h1>
-        <section>
-          <ul>
+        <Section>
+          <CarsList>
             {favoriteCar.map((car) => (
-              <li key={car.id}>
+              <ListItem key={car.id}>
                 <CarItem car={car} />
-              </li>
+              </ListItem>
             ))}
-          </ul>
-        </section>
+          </CarsList>
+        </Section>
       </main>
     </>
   );
