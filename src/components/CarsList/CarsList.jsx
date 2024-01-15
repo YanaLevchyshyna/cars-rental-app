@@ -29,17 +29,19 @@ export default function CarsList() {
   };
 
   return (
-    <Wrapper>
-      <Section>
-        <CarsListEl>
-          {cars.map((car) => (
-            <ListItem key={car.id}>
-              <CarItem car={car} />
-            </ListItem>
-          ))}
-        </CarsListEl>
-      </Section>
-      <Button onClick={handleLoadMore}>Load more</Button>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Section>
+          <CarsListEl>
+            {cars.map((car) => (
+              <ListItem key={car.id}>
+                <CarItem car={car} />
+              </ListItem>
+            ))}
+          </CarsListEl>
+        </Section>
+        <Button onClick={handleLoadMore}>Load more</Button>
+      </Wrapper>
+    </>
   );
 }
