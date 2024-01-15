@@ -4,6 +4,10 @@ export const Section = styled.section`
   margin-bottom: 100px;
 `;
 
+export const Title = styled.h1`
+  text-align: center;
+`;
+
 export const CarsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
