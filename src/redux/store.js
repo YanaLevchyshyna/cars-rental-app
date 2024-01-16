@@ -15,13 +15,6 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import carsSlice from './carsSlice';
 import favoriteSlice from './favoriteSlice';
 
-// export const store = configureStore({
-//   reducer: {
-//     cars: carsSlice,
-//     favorite: favoriteSlice,
-//   },
-// });
-
 export const reducer = combineReducers({
   cars: carsSlice,
   favorite: favoriteSlice,

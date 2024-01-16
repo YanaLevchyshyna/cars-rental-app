@@ -17,11 +17,11 @@ function FavoriteCars() {
       <main>
         <h1>Your favorite cars</h1>
         <section>
-          <ul>
+          {/* <ul>
             {favoriteCar.map((auto) => (
               <li key={auto.id}>{auto.model}</li>
             ))}
-          </ul>
+          </ul> */}
         </section>
       </main>
     </>
