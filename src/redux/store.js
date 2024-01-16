@@ -23,6 +23,7 @@ export const reducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['cars'], // Ім'я ключа, яке ви не потрібно зберігати
 };
 
 const persistedContactsReducer = persistReducer(persistConfig, reducer);
