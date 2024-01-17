@@ -1,21 +1,22 @@
 {
   "files": {
     "main.css": "/cars-rental-app/static/css/main.ebb3c90a.css",
-    "main.js": "/cars-rental-app/static/js/main.545c661c.js",
-    "static/js/544.617ea38b.chunk.js": "/cars-rental-app/static/js/544.617ea38b.chunk.js",
-    "static/js/306.77d43366.chunk.js": "/cars-rental-app/static/js/306.77d43366.chunk.js",
-    "static/js/703.7d43c2cc.chunk.js": "/cars-rental-app/static/js/703.7d43c2cc.chunk.js",
+    "main.js": "/cars-rental-app/static/js/main.3c9fd92f.js",
+    "static/js/387.757ee317.chunk.js": "/cars-rental-app/static/js/387.757ee317.chunk.js",
+    "static/js/306.3fb5a72e.chunk.js": "/cars-rental-app/static/js/306.3fb5a72e.chunk.js",
+    "static/js/703.251334ef.chunk.js": "/cars-rental-app/static/js/703.251334ef.chunk.js",
+    "static/media/home-page-car.jpg": "/cars-rental-app/static/media/home-page-car.273a9eddb555e3d6d487.jpg",
     "static/media/defaultCar1.jpeg": "/cars-rental-app/static/media/defaultCar1.fb9ce7c3b2c20a189c1d.jpeg",
     "index.html": "/cars-rental-app/index.html",
     "static/media/sprite.svg": "/cars-rental-app/static/media/sprite.8bf9d94f50ccb294bd7d21d7df41ffff.svg",
     "main.ebb3c90a.css.map": "/cars-rental-app/static/css/main.ebb3c90a.css.map",
-    "main.545c661c.js.map": "/cars-rental-app/static/js/main.545c661c.js.map",
-    "544.617ea38b.chunk.js.map": "/cars-rental-app/static/js/544.617ea38b.chunk.js.map",
-    "306.77d43366.chunk.js.map": "/cars-rental-app/static/js/306.77d43366.chunk.js.map",
-    "703.7d43c2cc.chunk.js.map": "/cars-rental-app/static/js/703.7d43c2cc.chunk.js.map"
+    "main.3c9fd92f.js.map": "/cars-rental-app/static/js/main.3c9fd92f.js.map",
+    "387.757ee317.chunk.js.map": "/cars-rental-app/static/js/387.757ee317.chunk.js.map",
+    "306.3fb5a72e.chunk.js.map": "/cars-rental-app/static/js/306.3fb5a72e.chunk.js.map",
+    "703.251334ef.chunk.js.map": "/cars-rental-app/static/js/703.251334ef.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ebb3c90a.css",
-    "static/js/main.545c661c.js"
+    "static/js/main.3c9fd92f.js"
   ]
 }
