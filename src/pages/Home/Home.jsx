@@ -1,7 +1,11 @@
+import { Div } from './Home.styled';
+
 function Home() {
   return (
     <>
-      <main></main>
+      <main>
+        <Div></Div>
+      </main>
     </>
   );
 }

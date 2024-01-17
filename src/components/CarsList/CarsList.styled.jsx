@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Section = styled.section`
+  margin-top: 35px;
   margin-bottom: 100px;
 `;
 

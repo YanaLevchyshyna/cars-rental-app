@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
-  margin-bottom: 50px;
   padding-top: 24px;
   padding-bottom: 24px;
   background-color: ${(props) => props.theme.colors.accent};
