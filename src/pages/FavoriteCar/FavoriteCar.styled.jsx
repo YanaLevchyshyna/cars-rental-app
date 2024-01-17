@@ -44,3 +44,7 @@ export const ListItem = styled.li`
     line-height: 1.5;
   }
 `;
+
+export const VintageCarImg = styled.img`
+  margin: 0px auto;
+`;

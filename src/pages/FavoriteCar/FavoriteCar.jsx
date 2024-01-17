@@ -2,14 +2,26 @@ import { useSelector } from 'react-redux';
 import { selectFavorite } from '../../redux/selectors';
 
 import CarItem from '../../components/CarItem/CarItem';
-import { Section, CarsList, ListItem, Title } from './FavoriteCar.styled';
+import car from '../../static/media/sport-vintage.png';
+import {
+  Section,
+  CarsList,
+  ListItem,
+  Title,
+  VintageCarImg,
+} from './FavoriteCar.styled';
 
 function FavoriteCars() {
   const favoriteCar = useSelector(selectFavorite);
   // console.log('Favorite', favoriteCar);
 
   if (favoriteCar.length < 1) {
-    return <Title>Please choose your favorite car!</Title>;
+    return (
+      <>
+        <Title>Please choose your favorite car!</Title>;
+        <VintageCarImg src={car} alt="Vintage Car" />
+      </>
+    );
   }
 
   return (
