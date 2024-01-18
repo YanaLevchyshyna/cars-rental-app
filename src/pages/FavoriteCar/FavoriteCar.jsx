@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
-import { selectFavorite } from '../../redux/selectors';
+
+import { selectFavorite } from '../../redux/favoriteSlice';
 
 import CarItem from '../../components/CarItem/CarItem';
 import car from '../../static/media/sport-vintage.png';

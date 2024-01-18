@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectFavorite } from '../../redux/selectors';
+// import { selectFavorite } from '../../redux/selectors';
+import { selectFavorite } from '../../redux/favoriteSlice';
+
 import {
   addCarToFavorite,
   deleteCarFromFavorite,

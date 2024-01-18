@@ -5,6 +5,7 @@ const favoriteSlice = createSlice({
   initialState: {
     favoritesCars: [],
   },
+  selectors: { selectFavorite: (state) => state.favoritesCars },
   reducers: {
     addCarToFavorite: (state, action) => {
       state.favoritesCars.push(action.payload);
@@ -19,5 +20,7 @@ const favoriteSlice = createSlice({
 
 export const { addCarToFavorite, deleteCarFromFavorite } =
   favoriteSlice.actions;
+
+export const { selectFavorite } = favoriteSlice.selectors;
 
 export default favoriteSlice.reducer;

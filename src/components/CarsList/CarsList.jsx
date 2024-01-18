@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { selectCars, selectPage } from '../../redux/selectors';
+import { selectCarsList, selectPage } from '../../redux/carsSlice';
 import { getCars } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
 import { loadMoreCars } from '../../redux/carsSlice';
@@ -15,7 +15,7 @@ import {
 } from './CarsList.styled';
 
 export default function CarsList() {
-  const cars = useSelector(selectCars);
+  const cars = useSelector(selectCarsList);
   const page = useSelector(selectPage);
 
   const dispatch = useDispatch();

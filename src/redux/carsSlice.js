@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getCars } from '../redux/operations';
@@ -10,6 +11,13 @@ const carsSlice = createSlice({
     carsList: [],
     isLoading: false,
     error: null,
+  },
+  selectors: {
+    selectPage: (state) => state.page,
+    selectLimit: (state) => state.limit,
+    selectCarsList: (state) => state.carsList,
+    selectIsLoading: (state) => state.isLoading,
+    selectError: (state) => state.error,
   },
   reducers: {
     loadMoreCars: (state, action) => {
@@ -49,5 +57,13 @@ const carsSlice = createSlice({
 });
 
 export const { loadMoreCars } = carsSlice.actions;
+
+export const {
+  selectPage,
+  selectCarsList,
+  selectError,
+  selectIsLoading,
+  selectLimit,
+} = carsSlice.selectors;
 
 export default carsSlice.reducer;
