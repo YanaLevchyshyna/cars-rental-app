@@ -1,10 +1,10 @@
-import { Div } from './Home.styled';
+import { Container } from './Home.styled';
 
 function Home() {
   return (
     <>
       <main>
-        <Div></Div>
+        <Container></Container>
       </main>
     </>
   );

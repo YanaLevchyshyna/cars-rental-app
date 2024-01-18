@@ -31,14 +31,19 @@ export const Link = styled(NavLink)`
   color: ${(props) => props.theme.colors.black};
   z-index: 1;
 
-  &:after {
+  &:hover:after {
     content: '';
     position: absolute;
+    right: 0;
+    bottom: 0;
     left: 0;
-    bottom: 0.06em;
-    height: 0.1em;
-    width: 100%;
+    height: 1.8px;
     background: linear-gradient(110deg, #6cb8ea, #0b44cd);
-    z-index: -1;
+    background-size: 200% 100%;
+    background-position: right center;
+
+    transition: transform 0.3s cubic-bezier(0.39, 1.03, 0.82, 0.08);
+    transform-origin: left center;
+    transform: translatex(0);
   }
 `;

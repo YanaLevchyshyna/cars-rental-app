@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import homePageCar from '../../static/media/home-page-car.jpg';
 
-export const Div = styled.div`
+export const Container = styled.div`
   max-width: 1440px;
   min-height: 100vh;
   margin-left: auto;
