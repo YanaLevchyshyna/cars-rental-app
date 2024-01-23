@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import Select from 'react-select';
 
 import { selectCarsList, selectPage } from '../../redux/carsSlice';
 import { getCars } from '../../redux/operations';
@@ -28,8 +29,21 @@ export default function CarsList() {
     dispatch(loadMoreCars({ page: page + 1, limit: 12 }));
   };
 
+  const capitalizeString = (string) => {
+    return `${string[0].toUpperCase()}${string.slice(1)}`;
+  };
+
+  const carBrandList = [
+    ...cars.map(({ id, make }) => ({
+      value: id,
+      label: capitalizeString(make),
+    })),
+  ];
+
   return (
     <>
+      <Select options={carBrandList} placeholder="Car brand" />
+      <Select />
       <Wrapper>
         <Section>
           <CarsListEl>
