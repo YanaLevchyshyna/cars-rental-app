@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getAllCars, getCars } from '../redux/operations';
+import { getAllCars } from '../redux/operations';
 
 const filterSlice = createSlice({
   name: 'filters',
   initialState: {
-    cars: [],
+    allCars: [],
     filteredCars: [],
     query: '',
     priceFilter: null,
     brandFilter: null,
   },
   selectors: {
-    selectAllCars: (state) => state.cars,
+    selectAllCars: (state) => state.allCars,
     selectFilteredCars: (state) => state.filteredCars,
   },
   reducers: {
@@ -27,10 +27,19 @@ const filterSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getCars.fulfilled, (state, action) => {
-      state.cars = action.payload;
-      state.filteredCars = action.payload;
-    });
+    builder
+      .addCase(getAllCars.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getAllCars.fulfilled, (state, action) => {
+        state.allCars = action.payload;
+        state.filteredCars = action.payload;
+      })
+      .addCase(getAllCars.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 

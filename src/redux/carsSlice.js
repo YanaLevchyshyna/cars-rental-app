@@ -26,6 +26,10 @@ const carsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getCars.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
       .addCase(getCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
@@ -43,10 +47,6 @@ const carsSlice = createSlice({
         //   'carsList:',
         //   state.carsList
         // );
-      })
-      .addCase(getCars.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
       })
       .addCase(getCars.rejected, (state, action) => {
         state.isLoading = false;

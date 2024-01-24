@@ -3,7 +3,9 @@ import { useEffect } from 'react';
 import Select from 'react-select';
 
 import { selectCarsList, selectPage } from '../../redux/carsSlice';
+// import { selectAllCars } from '../../redux/filterSlice';
 import { getCars } from '../../redux/operations';
+// import { getAllCars } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
 import { loadMoreCars } from '../../redux/carsSlice';
 
@@ -16,6 +18,9 @@ import {
 } from './CarsList.styled';
 
 export default function CarsList() {
+  // const allCars = useSelector(selectAllCars);
+  // console.log('allCars', allCars);
+
   const cars = useSelector(selectCarsList);
   const page = useSelector(selectPage);
 
@@ -24,6 +29,10 @@ export default function CarsList() {
   useEffect(() => {
     dispatch(getCars({ page }));
   }, [dispatch, page]);
+
+  // useEffect(() => {
+  //   dispatch(getAllCars());
+  // }, [dispatch]);
 
   const handleLoadMore = () => {
     dispatch(loadMoreCars({ page: page + 1, limit: 12 }));
