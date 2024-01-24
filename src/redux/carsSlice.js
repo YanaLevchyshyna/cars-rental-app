@@ -1,4 +1,3 @@
-/* eslint-disable no-empty-pattern */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getCars } from '../redux/operations';
@@ -36,14 +35,14 @@ const carsSlice = createSlice({
             ? action.payload.map((car) => ({ ...car })) // Копіювати дані без Proxy
             : [...state.carsList, ...action.payload.slice(0, state.limit)];
 
-        console.log(
-          'After update - page:',
-          state.page,
-          'limit:',
-          state.limit,
-          'carsList:',
-          state.carsList
-        );
+        // console.log(
+        //   'After update - page:',
+        //   state.page,
+        //   'limit:',
+        //   state.limit,
+        //   'carsList:',
+        //   state.carsList
+        // );
       })
       .addCase(getCars.pending, (state) => {
         state.isLoading = true;
