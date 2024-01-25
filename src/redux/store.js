@@ -14,12 +14,12 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 
 import carsSlice from './carsSlice';
 import favoriteSlice from './favoriteSlice';
-import filterSlice from './filterSlice';
+// import filterSlice from './filterSlice';
 
 export const reducer = combineReducers({
   cars: carsSlice,
   favorite: favoriteSlice,
-  filter: filterSlice,
+  // filter: filterSlice,
 });
 
 const persistConfig = {

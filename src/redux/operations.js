@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { fetchCars, fetchAllCars } from '../fetch-cars/fetchCars';
+import { fetchCars } from '../fetch-cars/fetchCars';
 
 export const getCars = createAsyncThunk(
   'cars/getCars',
-  async ({ page, limit }, { rejectWithValue }) => {
+  async ({ page, limit, brand }, { rejectWithValue }) => {
     try {
-      const cars = await fetchCars(page, limit);
+      const cars = await fetchCars(page, limit, brand);
       return cars;
     } catch (error) {
       console.log('error', error);
@@ -15,16 +15,16 @@ export const getCars = createAsyncThunk(
   }
 );
 
-export const getAllCars = createAsyncThunk(
-  'cars/getAllCars',
-  async (_, thunkAPI) => {
-    try {
-      const allCars = await fetchAllCars();
-      console.log('allCars', allCars);
-      return allCars;
-    } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const getAllCars = createAsyncThunk(
+//   'cars/getAllCars',
+//   async (_, thunkAPI) => {
+//     try {
+//       const allCars = await fetchAllCars();
+//       console.log('allCars', allCars);
+//       return allCars;
+//     } catch (error) {
+//       console.log(error);
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

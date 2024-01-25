@@ -10,6 +10,8 @@ const carsSlice = createSlice({
     carsList: [],
     isLoading: false,
     error: null,
+    filterByBrand: null,
+    filterByPrice: null,
   },
   selectors: {
     selectPage: (state) => state.page,
@@ -17,11 +19,19 @@ const carsSlice = createSlice({
     selectCarsList: (state) => state.carsList,
     selectIsLoading: (state) => state.isLoading,
     selectError: (state) => state.error,
+    selectByBrand: (state) => state.filterByBrand,
+    selectByPrice: (state) => state.filterByPrice,
   },
   reducers: {
     loadMoreCars: (state, action) => {
       state.page = action.payload.page;
       state.limit = action.payload.limit;
+    },
+    filteredByBrand: (state, action) => {
+      state.filterByBrand = action.payload.value;
+    },
+    filteredByPrice: (state, action) => {
+      state.filterByPrice = action.payload.value;
     },
   },
   extraReducers: (builder) => {
@@ -55,7 +65,8 @@ const carsSlice = createSlice({
   },
 });
 
-export const { loadMoreCars } = carsSlice.actions;
+export const { loadMoreCars, filteredByBrand, filteredByPrice } =
+  carsSlice.actions;
 
 export const {
   selectPage,
@@ -63,6 +74,8 @@ export const {
   selectError,
   selectIsLoading,
   selectLimit,
+  selectByBrand,
+  selectByPrice,
 } = carsSlice.selectors;
 
 export default carsSlice.reducer;
