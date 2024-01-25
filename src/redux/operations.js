@@ -4,9 +4,9 @@ import { fetchCars } from '../fetch-cars/fetchCars';
 
 export const getCars = createAsyncThunk(
   'cars/getCars',
-  async ({ page, limit, brand }, { rejectWithValue }) => {
+  async ({ page, limit }, { rejectWithValue }) => {
     try {
-      const cars = await fetchCars(page, limit, brand);
+      const cars = await fetchCars(page, limit);
       return cars;
     } catch (error) {
       console.log('error', error);

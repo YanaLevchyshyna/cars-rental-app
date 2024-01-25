@@ -34,7 +34,7 @@ export default function CarsList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCars({ page }));
+    dispatch(getCars({ page, limit: 12 }));
   }, [dispatch, page]);
 
   const handleLoadMore = () => {
@@ -45,12 +45,12 @@ export default function CarsList() {
     return `${string[0].toUpperCase()}${string.slice(1)}`;
   };
 
-  const carBrandList = [
-    ...cars.map(({ make }) => ({
+  const carBrandList = [...new Set(cars.map(({ make }) => make))].map(
+    (make) => ({
       value: make,
       label: capitalizeString(make),
-    })),
-  ];
+    })
+  );
 
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
