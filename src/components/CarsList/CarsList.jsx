@@ -20,7 +20,9 @@ import {
   CarsListEl,
   ListItem,
   Button,
+  SelectWrapper,
 } from './CarsList.styled';
+import { firstSelectStyles } from '../../constants/selectStyles';
 
 export default function CarsList() {
   const cars = useSelector(selectCarsList);
@@ -62,12 +64,29 @@ export default function CarsList() {
 
   return (
     <>
-      <Select
-        options={carBrandList}
-        onChange={handleBrandChange}
-        placeholder="Car brand"
-      />
-      <Select onChange={handlePriceChange} />
+      <SelectWrapper>
+        <Select
+          styles={firstSelectStyles}
+          options={carBrandList}
+          onChange={handleBrandChange}
+          placeholder="Car brand"
+          theme={(theme) => ({
+            ...theme,
+
+            colors: {
+              ...theme.colors,
+              primary50: 'rgba(255, 255, 255, 0.10)', // Цвет фона при нажатии на селект в меню
+              primary: 'transparent',
+              neutral40: '#EFEDE8', // ховер на птичку
+              neutral20: 'transparent', // дефолтный бордер
+              neutral30: 'transparent', // дефолтный ховер бордер
+              neutral50: 'rgba(239, 237, 232, 1)', // цвет плейсхолдера
+              neutral80: 'rgba(239, 237, 232, 1)',
+            },
+          })}
+        />
+        <Select styles={firstSelectStyles} onChange={handlePriceChange} />
+      </SelectWrapper>
       <Wrapper>
         <Section>
           <CarsListEl>

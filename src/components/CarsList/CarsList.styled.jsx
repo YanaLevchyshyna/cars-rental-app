@@ -63,3 +63,10 @@ export const Button = styled.button`
     color: ${(props) => props.theme.colors.secondary};
   }
 `;
+
+export const SelectWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 50px;
+`;

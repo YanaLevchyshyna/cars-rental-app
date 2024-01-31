@@ -2,25 +2,24 @@ export const customStyles = {
   option: (defaultStyles, state) => ({
     ...defaultStyles,
     padding: '8px 0',
-    fontSize: '14px',
-    color: state.isSelected ? '#E6533C' : '#EFEDE8',
-    backgroundColor: state.isSelected
-      ? 'rgba(28, 28, 28, 1)'
-      : state.isFocused
-      ? 'rgba(239, 237, 232, 0.10)'
-      : 'rgba(28, 28, 28, 1)', // Стилізація фона активної опції и ховера
+    fontSize: '18px',
+    color: state.isSelected ? '#121417' : 'rgba(18, 20, 23, 0.20)',
+    backgroundColor: '#ffffff',
     cursor: 'pointer',
   }),
 
   singleValue: (defaultStyles) => ({
     ...defaultStyles,
-    color: '#EFEDE8',
+    color: '#121417',
   }),
   menu: (defaultStyles) => ({
     ...defaultStyles,
-    backgroundColor: 'rgba(28, 28, 28, 1)', //фон списку
+    backgroundColor: '#ffffff', //фон списку
     // overflowY: 'auto',
-    padding: '6px 5px 14px 14px',
+    padding: '14px 8px 14px 18px',
+    borderRadius: '14px',
+    border: '1px solid rgba(18, 20, 23, 0.05)',
+    boxShadow: '0px 4px 36px 0px, rgba(0, 0, 0, 0.02)',
   }),
   indicatorSeparator: (defaultStyles) => ({
     ...defaultStyles,
@@ -28,36 +27,31 @@ export const customStyles = {
   }),
   dropdownIndicator: (defaultStyles) => ({
     ...defaultStyles,
-    color: '#EFEDE8',
+    color: '#121417',
   }),
   container: (defaultStyles, state) => ({
     ...defaultStyles,
-    border: `1px solid ${
-      state.isFocused ? '#E6533C' : 'rgba(239, 237, 232, 0.3)'
-    }`,
-    '&:hover': {
-      border: '1px solid #E6533C', //колір рамки при ховері
-    },
-    borderRadius: '12px',
+    color: '#121417',
+    backgroundColor: '#F7F7FB',
+    borderRadius: '14px',
     outline: 'none',
   }),
   menuList: (base) => ({
     ...base,
     overflowY: 'auto', // Вмикаємо скрол
-    marginTop: '14px',
-    marginRight: '7px',
     '&::-webkit-scrollbar': {
       width: '8px', // Задаємо ширину скрола
     },
     '&::-webkit-scrollbar-thumb': {
-      background: 'rgba(239, 237, 232, 0.10)', //колір скрола
-      borderRadius: '12px', //радіус бордера скрола
+      background: 'rgba(18, 20, 23, 0.05)', //колір скрола
+      borderRadius: '10px', //радіус бордера скрола
     },
   }),
   placeholder: (defaultStyles) => ({
     ...defaultStyles,
-    fontSize: '14px',
-    lineHeight: '1.28',
+    color: '#121417',
+    fontSize: '18px',
+    lineHeight: '1.11',
     margin: '0',
     padding: '0',
   }),
@@ -72,20 +66,11 @@ export const firstSelectStyles = {
     appearance: 'none', // Removing default appearance
     WebkitAppearance: 'none',
     MozAppearance: 'none',
-
-    '@media screen and (min-width: 375px)': {
-      width: '146px',
-      height: '46px',
-      fontSize: '14px',
-      lineHeight: '1.28',
-    },
-
-    '@media screen and (min-width: 768px)': {
-      width: '192px',
-      height: '52px',
-      fontSize: '16px',
-      lineHeight: '1.5',
-    },
+    width: '224px',
+    height: '48px',
+    fontSize: '18px',
+    lineHeight: '1.11',
+    fontWeight: '500',
   }),
 };
 
