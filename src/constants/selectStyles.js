@@ -28,6 +28,9 @@ export const customStyles = {
   dropdownIndicator: (defaultStyles) => ({
     ...defaultStyles,
     color: '#121417',
+    '&:hover': {
+      color: '#121417',
+    },
   }),
   container: (defaultStyles, state) => ({
     ...defaultStyles,

@@ -72,20 +72,33 @@ export default function CarsList() {
           placeholder="Car brand"
           theme={(theme) => ({
             ...theme,
-
             colors: {
               ...theme.colors,
-              primary50: 'rgba(255, 255, 255, 0.10)', // Цвет фона при нажатии на селект в меню
+              primary50: '#121417', // Цвет фона при нажатии на селект в меню
               primary: 'transparent',
-              neutral40: '#EFEDE8', // ховер на птичку
               neutral20: 'transparent', // дефолтный бордер
               neutral30: 'transparent', // дефолтный ховер бордер
-              neutral50: 'rgba(239, 237, 232, 1)', // цвет плейсхолдера
-              neutral80: 'rgba(239, 237, 232, 1)',
+              neutral50: '#121417', // цвет плейсхолдера
+              neutral80: '#121417',
             },
           })}
         />
-        <Select styles={firstSelectStyles} onChange={handlePriceChange} />
+        <Select
+          styles={firstSelectStyles}
+          onChange={handlePriceChange}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary50: '#121417', // Цвет фона при нажатии на селект в меню
+              primary: 'transparent',
+              neutral20: 'transparent', // дефолтный бордер
+              neutral30: 'transparent', // дефолтный ховер бордер
+              neutral50: '#121417', // цвет плейсхолдера
+              neutral80: '#121417',
+            },
+          })}
+        />
       </SelectWrapper>
       <Wrapper>
         <Section>
