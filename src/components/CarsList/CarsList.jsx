@@ -74,11 +74,11 @@ export default function CarsList() {
             ...theme,
             colors: {
               ...theme.colors,
-              primary50: '#121417', // Цвет фона при нажатии на селект в меню
+              primary50: '#121417', //колір фону коли натискаємо на селект в меню
               primary: 'transparent',
-              neutral20: 'transparent', // дефолтный бордер
-              neutral30: 'transparent', // дефолтный ховер бордер
-              neutral50: '#121417', // цвет плейсхолдера
+              neutral20: 'transparent', // дефолтний бордер
+              neutral30: 'transparent', // дефолтний ховер бордер
+              neutral50: '#121417', // колір плейсхолдера
               neutral80: '#121417',
             },
           })}
@@ -90,11 +90,11 @@ export default function CarsList() {
             ...theme,
             colors: {
               ...theme.colors,
-              primary50: '#121417', // Цвет фона при нажатии на селект в меню
+              primary50: '#121417', //колір фону коли натискаємо на селект в меню
               primary: 'transparent',
-              neutral20: 'transparent', // дефолтный бордер
-              neutral30: 'transparent', // дефолтный ховер бордер
-              neutral50: '#121417', // цвет плейсхолдера
+              neutral20: 'transparent', // дефолтний бордер
+              neutral30: 'transparent', // дефолтний ховер бордер
+              neutral50: '#121417', // колір плейсхолдера
               neutral80: '#121417',
             },
           })}
