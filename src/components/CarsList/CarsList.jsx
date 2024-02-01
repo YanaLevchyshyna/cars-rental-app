@@ -31,7 +31,7 @@ export default function CarsList() {
   // const page = useSelector(selectPage);
 
   const selectedBrand = useSelector(selectByBrand);
-  console.log('selectedBrand', selectedBrand);
+  // console.log('selectedBrand', selectedBrand);
 
   const dispatch = useDispatch();
 

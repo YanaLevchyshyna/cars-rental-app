@@ -44,11 +44,10 @@ const carsSlice = createSlice({
       .addCase(getAllCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-
-        state.carsList =
-          state.page === 1
-            ? action.payload.map((car) => ({ ...car })) // Копіювати дані без Proxy
-            : [...state.carsList, ...action.payload.slice(0, state.limit)];
+        state.carsList = action.payload;
+        // state.page === 1
+        //   ? action.payload.map((car) => ({ ...car })) // Копіювати дані без Proxy
+        //   : [...state.carsList, ...action.payload.slice(0, state.limit)];
 
         // console.log(
         //   'After update - page:',
