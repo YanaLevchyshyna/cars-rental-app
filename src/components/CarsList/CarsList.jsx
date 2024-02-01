@@ -4,22 +4,22 @@ import Select from 'react-select';
 
 import {
   selectCarsList,
-  selectPage,
+  // selectPage,
   selectByBrand,
 } from '../../redux/carsSlice';
 import {
-  loadMoreCars,
+  // loadMoreCars,
   filteredByBrand,
   filteredByPrice,
 } from '../../redux/carsSlice';
-import { getCars } from '../../redux/operations';
+import { getAllCars } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
 import {
   Wrapper,
   Section,
   CarsListEl,
   ListItem,
-  Button,
+  // Button,
   SelectWrapper,
 } from './CarsList.styled';
 import { firstSelectStyles } from '../../constants/selectStyles';
@@ -28,7 +28,7 @@ export default function CarsList() {
   const cars = useSelector(selectCarsList);
   // console.log('cars', cars);
 
-  const page = useSelector(selectPage);
+  // const page = useSelector(selectPage);
 
   const selectedBrand = useSelector(selectByBrand);
   console.log('selectedBrand', selectedBrand);
@@ -36,12 +36,12 @@ export default function CarsList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCars({ page, limit: 12 }));
-  }, [dispatch, page]);
+    dispatch(getAllCars());
+  }, [dispatch]);
 
-  const handleLoadMore = () => {
-    dispatch(loadMoreCars({ page: page + 1, limit: 12 }));
-  };
+  // const handleLoadMore = () => {
+  //   dispatch(loadMoreCars({ page: page + 1, limit: 12 }));
+  // };
 
   const capitalizeString = (string) => {
     return `${string[0].toUpperCase()}${string.slice(1)}`;
@@ -112,7 +112,7 @@ export default function CarsList() {
               ))}
           </CarsListEl>
         </Section>
-        <Button onClick={handleLoadMore}>Load more</Button>
+        {/* <Button onClick={handleLoadMore}>Load more</Button> */}
       </Wrapper>
     </>
   );

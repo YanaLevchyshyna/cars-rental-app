@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getCars } from '../redux/operations';
+// import { getCars } from '../redux/operations';
+import { getAllCars } from '../redux/operations';
 
 const carsSlice = createSlice({
   name: 'cars',
@@ -36,11 +37,11 @@ const carsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getCars.pending, (state) => {
+      .addCase(getAllCars.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getCars.fulfilled, (state, action) => {
+      .addCase(getAllCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
 
@@ -58,7 +59,7 @@ const carsSlice = createSlice({
         //   state.carsList
         // );
       })
-      .addCase(getCars.rejected, (state, action) => {
+      .addCase(getAllCars.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
