@@ -20,6 +20,8 @@ import {
   CarsListEl,
   ListItem,
   FormWrapper,
+  InputFromEl,
+  InputToEl,
   // Button,
   SelectWrapper,
 } from './CarsList.styled';
@@ -104,10 +106,10 @@ export default function CarsList() {
         </SelectWrapper>
         <form>
           <label>
-            <input type="text" placeholder="From" />
+            <InputFromEl type="text" placeholder="From" />
           </label>
           <label htmlFor="">
-            <input type="text" placeholder="To" />
+            <InputToEl type="text" placeholder="To" />
           </label>
         </form>
       </FormWrapper>

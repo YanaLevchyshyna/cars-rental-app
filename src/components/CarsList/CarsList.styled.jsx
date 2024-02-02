@@ -66,7 +66,6 @@ export const Button = styled.button`
 
 export const SelectWrapper = styled.div`
   display: flex;
-  justify-content: center;
   gap: 18px;
 `;
 
@@ -75,4 +74,44 @@ export const FormWrapper = styled.div`
   align-items: center;
   gap: 18px;
   margin-top: 50px;
+`;
+
+export const InputFromEl = styled.input`
+  padding: 0;
+  padding-left: 24px;
+
+  width: 136px;
+  height: 48px;
+
+  border-radius: 14px 0px 0px 14px;
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
+  border-bottom: none;
+  border-left: none;
+  border-top: none;
+  background-color: ${(props) => props.theme.colors.accent};
+
+  &::placeholder {
+    font-size: 18px;
+    color: ${(props) => props.theme.colors.black};
+    font-weight: ${(props) => props.theme.fontWeights.medium};
+    line-height: ${(props) => props.theme.lineHeights.body};
+  }
+`;
+
+export const InputToEl = styled.input`
+  padding: 0;
+  padding-left: 24px;
+  width: 136px;
+  height: 48px;
+  border: none;
+  background-color: ${(props) => props.theme.colors.accent};
+  /* padding: 14px 115px 14px 24px; */
+
+  border-radius: 0px 14px 14px 0px;
+  &::placeholder {
+    font-size: 18px;
+    color: ${(props) => props.theme.colors.black};
+    font-weight: ${(props) => props.theme.fontWeights.medium};
+    line-height: ${(props) => props.theme.lineHeights.body};
+  }
 `;
