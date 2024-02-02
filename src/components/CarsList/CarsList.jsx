@@ -19,6 +19,7 @@ import {
   Section,
   CarsListEl,
   ListItem,
+  FormWrapper,
   // Button,
   SelectWrapper,
 } from './CarsList.styled';
@@ -64,50 +65,52 @@ export default function CarsList() {
 
   return (
     <>
-      <SelectWrapper>
-        <Select
-          styles={firstSelectStyles}
-          options={carBrandList}
-          onChange={handleBrandChange}
-          placeholder="Enter the text"
-          theme={(theme) => ({
-            ...theme,
-            colors: {
-              ...theme.colors,
-              primary50: '#121417', //колір фону коли натискаємо на селект в меню
-              primary: 'transparent',
-              neutral20: 'transparent', // дефолтний бордер
-              neutral30: 'transparent', // дефолтний ховер бордер
-              neutral50: '#121417', // колір плейсхолдера
-              neutral80: '#121417',
-            },
-          })}
-        />
-        <Select
-          styles={firstSelectStyles}
-          onChange={handlePriceChange}
-          theme={(theme) => ({
-            ...theme,
-            colors: {
-              ...theme.colors,
-              primary50: '#121417', //колір фону коли натискаємо на селект в меню
-              primary: 'transparent',
-              neutral20: 'transparent', // дефолтний бордер
-              neutral30: 'transparent', // дефолтний ховер бордер
-              neutral50: '#121417', // колір плейсхолдера
-              neutral80: '#121417',
-            },
-          })}
-        />
-      </SelectWrapper>
-      <form>
-        <label>
-          <input type="text" placeholder="From" />
-        </label>
-        <label htmlFor="">
-          <input type="text" placeholder="To" />
-        </label>
-      </form>
+      <FormWrapper>
+        <SelectWrapper>
+          <Select
+            styles={firstSelectStyles}
+            options={carBrandList}
+            onChange={handleBrandChange}
+            placeholder="Enter the text"
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary50: '#121417', //колір фону коли натискаємо на селект в меню
+                primary: 'transparent',
+                neutral20: 'transparent', // дефолтний бордер
+                neutral30: 'transparent', // дефолтний ховер бордер
+                neutral50: '#121417', // колір плейсхолдера
+                neutral80: '#121417',
+              },
+            })}
+          />
+          <Select
+            styles={firstSelectStyles}
+            onChange={handlePriceChange}
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary50: '#121417', //колір фону коли натискаємо на селект в меню
+                primary: 'transparent',
+                neutral20: 'transparent', // дефолтний бордер
+                neutral30: 'transparent', // дефолтний ховер бордер
+                neutral50: '#121417', // колір плейсхолдера
+                neutral80: '#121417',
+              },
+            })}
+          />
+        </SelectWrapper>
+        <form>
+          <label>
+            <input type="text" placeholder="From" />
+          </label>
+          <label htmlFor="">
+            <input type="text" placeholder="To" />
+          </label>
+        </form>
+      </FormWrapper>
       <Wrapper>
         <Section>
           <CarsListEl>
