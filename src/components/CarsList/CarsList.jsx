@@ -69,7 +69,7 @@ export default function CarsList() {
           styles={firstSelectStyles}
           options={carBrandList}
           onChange={handleBrandChange}
-          placeholder="Car brand"
+          placeholder="Enter the text"
           theme={(theme) => ({
             ...theme,
             colors: {
@@ -100,6 +100,14 @@ export default function CarsList() {
           })}
         />
       </SelectWrapper>
+      <form>
+        <label>
+          <input type="text" placeholder="From" />
+        </label>
+        <label htmlFor="">
+          <input type="text" placeholder="To" />
+        </label>
+      </form>
       <Wrapper>
         <Section>
           <CarsListEl>
