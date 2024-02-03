@@ -111,6 +111,7 @@ export default function CarsList() {
           <label htmlFor="">
             <InputToEl type="text" placeholder="To" />
           </label>
+          <button>Search</button>
         </form>
       </FormWrapper>
       <Wrapper>
