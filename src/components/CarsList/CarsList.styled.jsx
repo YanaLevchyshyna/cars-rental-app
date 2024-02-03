@@ -72,6 +72,7 @@ export const SelectWrapper = styled.div`
 export const FormWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 18px;
   margin-top: 50px;
 `;
