@@ -1,17 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Select from 'react-select';
 
+import { selectByBrand } from '../../redux/filterSlice';
+import { selectCarsList } from '../../redux/carsSlice';
 import {
-  selectCarsList,
-  // selectPage,
-  selectByBrand,
-} from '../../redux/carsSlice';
-import {
-  // loadMoreCars,
+  filteredBySearch,
   filteredByBrand,
   filteredByPrice,
-} from '../../redux/carsSlice';
+} from '../../redux/filterSlice';
 import { getAllCars } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
 import {
@@ -22,16 +19,15 @@ import {
   FormWrapper,
   InputFromEl,
   InputToEl,
+  SearchButton,
   // Button,
-  SelectWrapper,
 } from './CarsList.styled';
 import { firstSelectStyles } from '../../constants/selectStyles';
 
 export default function CarsList() {
-  const cars = useSelector(selectCarsList);
-  // console.log('cars', cars);
+  const [inputQuery, setInputQuery] = useState('');
 
-  // const page = useSelector(selectPage);
+  const cars = useSelector(selectCarsList);
 
   const selectedBrand = useSelector(selectByBrand);
   // console.log('selectedBrand', selectedBrand);
@@ -42,20 +38,52 @@ export default function CarsList() {
     dispatch(getAllCars());
   }, [dispatch]);
 
-  // const handleLoadMore = () => {
-  //   dispatch(loadMoreCars({ page: page + 1, limit: 12 }));
-  // };
-
   const capitalizeString = (string) => {
     return `${string[0].toUpperCase()}${string.slice(1)}`;
   };
 
-  const carBrandList = [...new Set(cars.map(({ make }) => make))].map(
-    (make) => ({
+  const carBrandList = [
+    { value: 'all', label: 'All Brands' },
+    ...cars.map(({ make }) => ({
       value: make,
       label: capitalizeString(make),
-    })
-  );
+    })),
+  ];
+
+  // const carBrandList = cars.reduce(
+  //   (options, { make }) => {
+  //     const makeValue = make.toLowerCase();
+  //     if (!options.some((option) => option.value === makeValue)) {
+  //       options.push({
+  //         value: makeValue,
+  //         label: capitalizeString(make),
+  //       });
+  //     }
+  //     return options;
+  //   },
+  //   [{ value: 'all', label: 'All Brands' }]
+  // );
+
+  // const carRentalPriceList = cars.reduce(
+  //   (options, { rentalPrice }) => {
+  //     if (!options.some((option) => option.value === rentalPrice)) {
+  //       options.push({
+  //         value: rentalPrice,
+  //         label: rentalPrice,
+  //       });
+  //     }
+  //     return options;
+  //   },
+  //   [{ value: 'all', label: 'All Prices' }]
+  // );
+
+  const carRentalPrice = [
+    { value: 'all', label: 'All Prices' },
+    ...cars.map(({ rentalPrice, make }) => ({
+      value: make,
+      label: rentalPrice,
+    })),
+  ];
 
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
@@ -65,60 +93,92 @@ export default function CarsList() {
     dispatch(filteredByPrice(selectedOption));
   };
 
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setInputQuery(value);
+  };
+
+  const handleSearch = (e) => {
+    // console.log('EVENT ===>', e);
+    e.preventDefault();
+    const searchValueFrom = e.target[0].value;
+    console.log('searchValueFrom', searchValueFrom);
+    dispatch(filteredBySearch(searchValueFrom));
+  };
+
+  // const resetForm = () => {
+  //   setInputQuery('');
+  // };
+
   return (
     <>
       <FormWrapper>
-        <SelectWrapper>
-          <Select
-            styles={firstSelectStyles}
-            options={carBrandList}
-            onChange={handleBrandChange}
-            placeholder="Enter the text"
-            theme={(theme) => ({
-              ...theme,
-              colors: {
-                ...theme.colors,
-                primary50: '#121417', //колір фону коли натискаємо на селект в меню
-                primary: 'transparent',
-                neutral20: 'transparent', // дефолтний бордер
-                neutral30: 'transparent', // дефолтний ховер бордер
-                neutral50: '#121417', // колір плейсхолдера
-                neutral80: '#121417',
-              },
-            })}
-          />
-          <Select
-            styles={firstSelectStyles}
-            onChange={handlePriceChange}
-            theme={(theme) => ({
-              ...theme,
-              colors: {
-                ...theme.colors,
-                primary50: '#121417', //колір фону коли натискаємо на селект в меню
-                primary: 'transparent',
-                neutral20: 'transparent', // дефолтний бордер
-                neutral30: 'transparent', // дефолтний ховер бордер
-                neutral50: '#121417', // колір плейсхолдера
-                neutral80: '#121417',
-              },
-            })}
-          />
-        </SelectWrapper>
-        <form>
+        <Select
+          styles={firstSelectStyles}
+          options={carBrandList}
+          onChange={handleBrandChange}
+          placeholder="Enter the text"
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary50: '#121417', //колір фону коли натискаємо на селект в меню
+              primary: 'transparent',
+              neutral20: 'transparent', // дефолтний бордер
+              neutral30: 'transparent', // дефолтний ховер бордер
+              neutral50: '#121417', // колір плейсхолдера
+              neutral80: '#121417',
+            },
+          })}
+        />
+        <Select
+          styles={firstSelectStyles}
+          options={carRentalPrice}
+          onChange={handlePriceChange}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary50: '#121417', //колір фону коли натискаємо на селект в меню
+              primary: 'transparent',
+              neutral20: 'transparent', // дефолтний бордер
+              neutral30: 'transparent', // дефолтний ховер бордер
+              neutral50: '#121417', // колір плейсхолдера
+              neutral80: '#121417',
+            },
+          })}
+        />
+
+        <form onSubmit={handleSearch}>
           <label>
-            <InputFromEl type="text" placeholder="From" />
+            <InputFromEl
+              type="text"
+              placeholder="From"
+              name="mileageFrom"
+              value={inputQuery}
+              onChange={handleChange}
+            />
           </label>
           <label htmlFor="">
-            <InputToEl type="text" placeholder="To" />
+            <InputToEl
+              type="text"
+              placeholder="To"
+              name="mileageTo"
+              value={inputQuery}
+              onChange={handleChange}
+            />
           </label>
-          <button>Search</button>
+          <SearchButton type="submit">Search</SearchButton>
         </form>
       </FormWrapper>
       <Wrapper>
         <Section>
           <CarsListEl>
             {cars
-              .filter((car) => !selectedBrand || car.make === selectedBrand)
+              .filter(
+                (car) =>
+                  selectedBrand === 'all' || car.make === selectedBrand.value
+              )
               .map((car) => (
                 <ListItem key={car.id}>
                   <CarItem car={car} />

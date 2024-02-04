@@ -22,7 +22,7 @@ export const getAllCars = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const allCars = await fetchAllCars();
-      console.log('allCars', allCars);
+      // console.log('allCars', allCars);
       return allCars;
     } catch (error) {
       console.log(error);

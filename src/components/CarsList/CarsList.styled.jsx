@@ -55,7 +55,7 @@ export const Button = styled.button`
   line-height: 1.5;
   text-decoration-line: underline;
 
-  margin-bottom: 70px;
+  margin-left: 70px;
 
   cursor: pointer;
 
@@ -114,5 +114,21 @@ export const InputToEl = styled.input`
     color: ${(props) => props.theme.colors.black};
     font-weight: ${(props) => props.theme.fontWeights.medium};
     line-height: ${(props) => props.theme.lineHeights.body};
+  }
+`;
+export const SearchButton = styled.button`
+  padding: 14px 44px;
+  margin-left: 18px;
+  color: #ffffff;
+  font-size: ${(props) => props.theme.fontSizes.s};
+  font-weight: ${(props) => props.theme.fontWeights.medium};
+  line-height: 1.43;
+  border: ${(props) => props.theme.borders.none};
+  border-radius: ${(props) => props.theme.radius.normal};
+  background-color: ${(props) => props.theme.colors.primary};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors.secondary};
   }
 `;
