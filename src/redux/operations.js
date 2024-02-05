@@ -1,9 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-// import { fetchCars, } from '../fetch-cars/fetchCars';
-
 import { fetchAllCars } from '../fetch-cars/fetchCars';
+// import { fetchCars, } from '../fetch-cars/fetchCars';
 
 // export const getCars = createAsyncThunk(
 //   'cars/getCars',
@@ -17,8 +14,6 @@ import { fetchAllCars } from '../fetch-cars/fetchCars';
 //     }
 //   }
 // );
-
-axios.defaults.baseURL = 'https://656870759927836bd974cfd0.mockapi.io/';
 
 export const getAllCars = createAsyncThunk(
   'cars/getAllCars',

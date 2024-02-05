@@ -89,10 +89,10 @@ export default function CarsList() {
   //   [{ value: 'all', label: 'All Prices' }]
   // );
 
-  const carRentalPrice = [
+  const carRentalPriceList = [
     { value: 'all', label: 'All Prices' },
-    ...cars.map(({ rentalPrice, make }) => ({
-      value: make,
+    ...cars.map(({ rentalPrice }) => ({
+      value: rentalPrice,
       label: rentalPrice,
     })),
   ];
@@ -129,7 +129,7 @@ export default function CarsList() {
           styles={firstSelectStyles}
           options={carBrandList}
           onChange={handleBrandChange}
-          placeholder="Enter the text"
+          placeholder="Enter the car brand"
           theme={(theme) => ({
             ...theme,
             colors: {
@@ -145,8 +145,9 @@ export default function CarsList() {
         />
         <Select
           styles={firstSelectStyles}
-          options={carRentalPrice}
+          options={carRentalPriceList}
           onChange={handlePriceChange}
+          placeholder="To"
           theme={(theme) => ({
             ...theme,
             colors: {
