@@ -55,7 +55,7 @@ export default function CarsList() {
   };
 
   const carBrandList = [
-    { value: 'all', label: 'All Brands' },
+    { value: 'all', label: 'All car brands' },
     ...cars.map(({ make }) => ({
       value: make,
       label: capitalizeString(make),
@@ -90,7 +90,7 @@ export default function CarsList() {
   // );
 
   const carRentalPriceList = [
-    { value: 'all', label: 'All Prices' },
+    { value: 'all', label: 'All car rental prices' },
     ...cars.map(({ rentalPrice }) => ({
       value: rentalPrice,
       label: rentalPrice,
@@ -113,9 +113,9 @@ export default function CarsList() {
   const handleSearch = (e) => {
     // console.log('EVENT ===>', e);
     e.preventDefault();
-    const searchValueFrom = e.target[0].value;
-    console.log('searchValueFrom', searchValueFrom);
-    dispatch(filteredBySearch(searchValueFrom));
+    const { value } = e.target;
+    console.log('searchValueFrom', value);
+    dispatch(filteredBySearch(value));
   };
 
   // const resetForm = () => {
@@ -187,17 +187,29 @@ export default function CarsList() {
       <Wrapper>
         <Section>
           <CarsListEl>
-            {cars
-              .filter(
-                (car) =>
-                  selectedBrand.value === 'all' ||
-                  car.make === selectedBrand.value
-              )
-              .map((car) => (
-                <ListItem key={car.id}>
-                  <CarItem car={car} />
-                </ListItem>
-              ))}
+            {cars.length > 0 ? (
+              cars
+                .filter((car) => {
+                  const selectedCarByBrand =
+                    selectedBrand.value === 'all' ||
+                    car.make === selectedBrand.value;
+
+                  const selectedCarByPrice =
+                    selectedPrice.value === 'all' ||
+                    car.rentalPrice === selectedPrice.value;
+                  return selectedCarByBrand && selectedCarByPrice;
+                })
+                .map((car) => (
+                  <ListItem key={car.id}>
+                    <CarItem car={car} />
+                  </ListItem>
+                ))
+            ) : (
+              <p>
+                Sorry, your query doesn't match the search criteria. Please try
+                again.
+              </p>
+            )}
           </CarsListEl>
         </Section>
         {/* <Button onClick={handleLoadMore}>Load more</Button> */}

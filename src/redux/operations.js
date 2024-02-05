@@ -22,18 +22,18 @@ export const getAllCars = createAsyncThunk(
       const queryParams = [];
 
       if (selectedPrice && selectedPrice !== 'all') {
-        queryParams.push(`selectedPrice=${selectedPrice}`);
+        queryParams.push(`filter=${selectedPrice}`);
       }
 
       if (selectedBrand && selectedBrand !== 'all') {
-        queryParams.push(`selectedBrand=${selectedBrand}`);
+        queryParams.push(`filter=${selectedBrand}`);
       }
 
       if (query && query.trim() !== '') {
-        queryParams.push(`query=${query}`);
+        queryParams.push(`search=${query}`);
       }
       const queryString =
-        queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+        queryParams.length > 0 ? `${queryParams.join('&')}` : '';
 
       const allCars = await fetchAllCars(queryString);
       return allCars;
