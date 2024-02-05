@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 // import { fetchCars, } from '../fetch-cars/fetchCars';
 
@@ -17,12 +18,29 @@ import { fetchAllCars } from '../fetch-cars/fetchCars';
 //   }
 // );
 
+axios.defaults.baseURL = 'https://656870759927836bd974cfd0.mockapi.io/';
+
 export const getAllCars = createAsyncThunk(
   'cars/getAllCars',
-  async (_, thunkAPI) => {
+  async ({ selectedPrice, selectedBrand, query }, thunkAPI) => {
     try {
-      const allCars = await fetchAllCars();
-      // console.log('allCars', allCars);
+      const queryParams = [];
+
+      if (selectedPrice && selectedPrice !== 'all') {
+        queryParams.push(`selectedPrice=${selectedPrice}`);
+      }
+
+      if (selectedBrand && selectedBrand !== 'all') {
+        queryParams.push(`selectedBrand=${selectedBrand}`);
+      }
+
+      if (query && query.trim() !== '') {
+        queryParams.push(`query=${query}`);
+      }
+      const queryString =
+        queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+
+      const allCars = await fetchAllCars(queryString);
       return allCars;
     } catch (error) {
       console.log(error);

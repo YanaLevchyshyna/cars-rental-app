@@ -4,7 +4,7 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState: {
     filterByBrand: { value: 'all', label: 'All Brands' },
-    filterByPrice: null,
+    filterByPrice: { value: 'all', label: 'All Prices' },
     filterBySearch: '',
   },
   selectors: {

@@ -2,7 +2,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 
-import { selectByBrand } from '../../redux/filterSlice';
+import {
+  selectByBrand,
+  selectByPrice,
+  selectBySearch,
+} from '../../redux/filterSlice';
 import { selectCarsList } from '../../redux/carsSlice';
 import {
   filteredBySearch,
@@ -31,12 +35,20 @@ export default function CarsList() {
 
   const selectedBrand = useSelector(selectByBrand);
   // console.log('selectedBrand', selectedBrand);
+  const selectedPrice = useSelector(selectByPrice);
+  const query = useSelector(selectBySearch);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllCars());
-  }, [dispatch]);
+    dispatch(
+      getAllCars({
+        selectedBrand: selectedBrand.value,
+        selectedPrice: selectedPrice.value,
+        query,
+      })
+    );
+  }, [selectedPrice, selectedBrand, query, dispatch]);
 
   const capitalizeString = (string) => {
     return `${string[0].toUpperCase()}${string.slice(1)}`;
@@ -177,7 +189,8 @@ export default function CarsList() {
             {cars
               .filter(
                 (car) =>
-                  selectedBrand === 'all' || car.make === selectedBrand.value
+                  selectedBrand.value === 'all' ||
+                  car.make === selectedBrand.value
               )
               .map((car) => (
                 <ListItem key={car.id}>
