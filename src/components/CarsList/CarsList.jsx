@@ -50,15 +50,21 @@ export default function CarsList() {
     );
   }, [selectedPrice, selectedBrand, query, dispatch]);
 
-  const capitalizeString = (string) => {
-    return `${string[0].toUpperCase()}${string.slice(1)}`;
-  };
+  // const capitalizeString = (string) => {
+  //   if (string) {
+  //     return `${string[0].toUpperCase()}${string.slice(1)}`;
+  //   }
+  //   return '';
+  // };
+
+  const uniqueCarMakes = [...new Set(cars.map(({ make }) => make))];
+  console.log('uniqueCarMakes', uniqueCarMakes);
 
   const carBrandList = [
     { value: 'all', label: 'All car brands' },
-    ...cars.map(({ make }) => ({
+    ...uniqueCarMakes.map((make) => ({
       value: make,
-      label: capitalizeString(make),
+      label: make,
     })),
   ];
 
@@ -127,6 +133,7 @@ export default function CarsList() {
       <FormWrapper>
         <Select
           styles={firstSelectStyles}
+          value={selectedBrand}
           options={carBrandList}
           onChange={handleBrandChange}
           placeholder="Enter the car brand"
@@ -145,6 +152,7 @@ export default function CarsList() {
         />
         <Select
           styles={firstSelectStyles}
+          value={selectedPrice}
           options={carRentalPriceList}
           onChange={handlePriceChange}
           placeholder="To"
