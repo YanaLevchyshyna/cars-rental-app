@@ -34,7 +34,8 @@ export default function CarsList() {
   const cars = useSelector(selectCarsList);
 
   const selectedBrand = useSelector(selectByBrand);
-  // console.log('selectedBrand', selectedBrand);
+  console.log('selectedBrand before', selectedBrand);
+
   const selectedPrice = useSelector(selectByPrice);
 
   const milageFrom = useSelector(selectByMileageFrom);
@@ -51,6 +52,8 @@ export default function CarsList() {
     );
   }, [selectedPrice, selectedBrand, milageFrom, dispatch]);
 
+  console.log('selectedBrand after', selectedBrand);
+
   // const capitalizeString = (string) => {
   //   if (string) {
   //     return `${string[0].toUpperCase()}${string.slice(1)}`;
@@ -59,12 +62,12 @@ export default function CarsList() {
   // };
 
   const allBrands = cars.flatMap((car) => car.make);
-  console.log('allBrands', allBrands);
+  // console.log('allBrands', allBrands);
 
   const uniqueCarMakes = allBrands.filter(
     (make, index, array) => array.indexOf(make) === index
   );
-  console.log('uniqueCarMakes', uniqueCarMakes);
+  // console.log('uniqueCarMakes', uniqueCarMakes);
 
   // const uniqueCarMakes = [...new Set(cars.map(({ make }) => make))];
   // console.log('uniqueCarMakes', uniqueCarMakes);
