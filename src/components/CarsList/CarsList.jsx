@@ -5,11 +5,11 @@ import Select from 'react-select';
 import {
   selectByBrand,
   selectByPrice,
-  selectBySearch,
+  selectByMileageFrom,
 } from '../../redux/filterSlice';
 import { selectCarsList } from '../../redux/carsSlice';
 import {
-  filteredBySearch,
+  filteredByMileageFrom,
   filteredByBrand,
   filteredByPrice,
 } from '../../redux/filterSlice';
@@ -36,7 +36,8 @@ export default function CarsList() {
   const selectedBrand = useSelector(selectByBrand);
   // console.log('selectedBrand', selectedBrand);
   const selectedPrice = useSelector(selectByPrice);
-  const query = useSelector(selectBySearch);
+
+  const milageFrom = useSelector(selectByMileageFrom);
 
   const dispatch = useDispatch();
 
@@ -45,10 +46,10 @@ export default function CarsList() {
       getAllCars({
         selectedBrand: selectedBrand.value,
         selectedPrice: selectedPrice.value,
-        query,
+        milageFrom,
       })
     );
-  }, [selectedPrice, selectedBrand, query, dispatch]);
+  }, [selectedPrice, selectedBrand, milageFrom, dispatch]);
 
   // const capitalizeString = (string) => {
   //   if (string) {
@@ -57,8 +58,16 @@ export default function CarsList() {
   //   return '';
   // };
 
-  const uniqueCarMakes = [...new Set(cars.map(({ make }) => make))];
+  const allBrands = cars.flatMap((car) => car.make);
+  console.log('allBrands', allBrands);
+
+  const uniqueCarMakes = allBrands.filter(
+    (make, index, array) => array.indexOf(make) === index
+  );
   console.log('uniqueCarMakes', uniqueCarMakes);
+
+  // const uniqueCarMakes = [...new Set(cars.map(({ make }) => make))];
+  // console.log('uniqueCarMakes', uniqueCarMakes);
 
   const carBrandList = [
     { value: 'all', label: 'All car brands' },
@@ -121,7 +130,7 @@ export default function CarsList() {
     e.preventDefault();
     const { value } = e.target;
     console.log('searchValueFrom', value);
-    dispatch(filteredBySearch(value));
+    dispatch(filteredByMileageFrom(value));
   };
 
   // const resetForm = () => {
