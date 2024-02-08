@@ -142,6 +142,7 @@ export default function CarsList() {
           value={selectedBrand}
           options={carBrandList}
           onChange={handleBrandChange}
+          isLoading={true}
           placeholder="Enter the car brand"
           theme={(theme) => ({
             ...theme,
@@ -161,6 +162,7 @@ export default function CarsList() {
           value={selectedPrice}
           options={carRentalPriceList}
           onChange={handlePriceChange}
+          isLoading={true}
           placeholder="To"
           theme={(theme) => ({
             ...theme,
