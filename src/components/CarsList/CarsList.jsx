@@ -45,8 +45,8 @@ export default function CarsList() {
   useEffect(() => {
     dispatch(
       getAllCars({
-        selectedBrand: selectedBrand.value,
-        selectedPrice: selectedPrice.value,
+        selectedBrand: selectedBrand,
+        selectedPrice: selectedPrice,
         milageFrom,
       })
     );
@@ -54,15 +54,7 @@ export default function CarsList() {
 
   console.log('selectedBrand after', selectedBrand);
 
-  // const capitalizeString = (string) => {
-  //   if (string) {
-  //     return `${string[0].toUpperCase()}${string.slice(1)}`;
-  //   }
-  //   return '';
-  // };
-
   const allBrands = cars.flatMap((car) => car.make);
-  // console.log('allBrands', allBrands);
 
   const uniqueCarMakes = allBrands.filter(
     (make, index, array) => array.indexOf(make) === index
@@ -118,6 +110,8 @@ export default function CarsList() {
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
   };
+
+  console.log('selectedBrand after 222', selectedBrand);
 
   const handlePriceChange = (selectedOption) => {
     dispatch(filteredByPrice(selectedOption));
