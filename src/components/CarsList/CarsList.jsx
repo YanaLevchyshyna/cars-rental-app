@@ -34,7 +34,7 @@ export default function CarsList() {
   const cars = useSelector(selectCarsList);
 
   const selectedBrand = useSelector(selectByBrand);
-  console.log('selectedBrand before', selectedBrand);
+  // console.log('selectedBrand before', selectedBrand);
 
   const selectedPrice = useSelector(selectByPrice);
 
@@ -46,13 +46,13 @@ export default function CarsList() {
     dispatch(
       getAllCars({
         selectedBrand: selectedBrand,
-        selectedPrice: selectedPrice,
+        selectedPrice: selectedPrice.value,
         milageFrom,
       })
     );
   }, [selectedPrice, selectedBrand, milageFrom, dispatch]);
 
-  console.log('selectedBrand after', selectedBrand);
+  // console.log('selectedBrand after', selectedBrand);
 
   const allBrands = cars.flatMap((car) => car.make);
 
@@ -72,33 +72,6 @@ export default function CarsList() {
     })),
   ];
 
-  // const carBrandList = cars.reduce(
-  //   (options, { make }) => {
-  //     const makeValue = make.toLowerCase();
-  //     if (!options.some((option) => option.value === makeValue)) {
-  //       options.push({
-  //         value: makeValue,
-  //         label: capitalizeString(make),
-  //       });
-  //     }
-  //     return options;
-  //   },
-  //   [{ value: 'all', label: 'All Brands' }]
-  // );
-
-  // const carRentalPriceList = cars.reduce(
-  //   (options, { rentalPrice }) => {
-  //     if (!options.some((option) => option.value === rentalPrice)) {
-  //       options.push({
-  //         value: rentalPrice,
-  //         label: rentalPrice,
-  //       });
-  //     }
-  //     return options;
-  //   },
-  //   [{ value: 'all', label: 'All Prices' }]
-  // );
-
   const carRentalPriceList = [
     { value: 'all', label: 'All car rental prices' },
     ...cars.map(({ rentalPrice }) => ({
@@ -107,11 +80,13 @@ export default function CarsList() {
     })),
   ];
 
-  const handleBrandChange = (selectedOption) => {
-    dispatch(filteredByBrand(selectedOption));
+  const getValue = () => {
+    return selectedBrand ? cars.find((car) => car.value === selectedBrand) : '';
   };
 
-  console.log('selectedBrand after 222', selectedBrand);
+  const handleBrandChange = (selectedOption) => {
+    dispatch(filteredByBrand(selectedOption.value));
+  };
 
   const handlePriceChange = (selectedOption) => {
     dispatch(filteredByPrice(selectedOption));
@@ -139,7 +114,7 @@ export default function CarsList() {
       <FormWrapper>
         <Select
           styles={firstSelectStyles}
-          value={selectedBrand}
+          value={getValue()}
           options={carBrandList}
           onChange={handleBrandChange}
           isLoading={true}
