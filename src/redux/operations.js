@@ -21,6 +21,8 @@ export const getAllCars = createAsyncThunk(
     try {
       const queryParams = [];
 
+      console.log('selectedBrand OPERATIONS', selectedBrand);
+
       if (selectedPrice && selectedPrice !== 'all') {
         queryParams.push(`filter=${selectedPrice}`);
       }

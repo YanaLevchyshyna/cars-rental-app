@@ -31,6 +31,8 @@ import { firstSelectStyles } from '../../constants/selectStyles';
 export default function CarsList() {
   const [inputQuery, setInputQuery] = useState('');
 
+  // const [filteredCars, setFilteredCars] = useState([]);
+
   const cars = useSelector(selectCarsList);
 
   const selectedBrand = useSelector(selectByBrand);
@@ -45,9 +47,9 @@ export default function CarsList() {
   useEffect(() => {
     dispatch(
       getAllCars({
-        selectedBrand: selectedBrand,
-        selectedPrice: selectedPrice.value,
-        milageFrom,
+        selectedBrand: selectedBrand.value,
+        // selectedPrice: selectedPrice.value,
+        // milageFrom,
       })
     );
   }, [selectedPrice, selectedBrand, milageFrom, dispatch]);
@@ -59,7 +61,6 @@ export default function CarsList() {
   const uniqueCarMakes = allBrands.filter(
     (make, index, array) => array.indexOf(make) === index
   );
-  // console.log('uniqueCarMakes', uniqueCarMakes);
 
   // const uniqueCarMakes = [...new Set(cars.map(({ make }) => make))];
   // console.log('uniqueCarMakes', uniqueCarMakes);
@@ -80,12 +81,8 @@ export default function CarsList() {
     })),
   ];
 
-  const getValue = () => {
-    return selectedBrand ? cars.find((car) => car.value === selectedBrand) : '';
-  };
-
   const handleBrandChange = (selectedOption) => {
-    dispatch(filteredByBrand(selectedOption.value));
+    dispatch(filteredByBrand(selectedOption));
   };
 
   const handlePriceChange = (selectedOption) => {
@@ -114,7 +111,7 @@ export default function CarsList() {
       <FormWrapper>
         <Select
           styles={firstSelectStyles}
-          value={getValue()}
+          value={selectedBrand}
           options={carBrandList}
           onChange={handleBrandChange}
           isLoading={true}
