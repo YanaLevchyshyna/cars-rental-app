@@ -31,36 +31,14 @@ import { firstSelectStyles } from '../../constants/selectStyles';
 export default function CarsList() {
   const dispatch = useDispatch();
   const [inputQuery, setInputQuery] = useState('');
-  const [carBrandList, setCarBrandList] = useState([]);
-  const [filteredCarMakes, setFilteredCarMakes] = useState([]);
-  const [uniqueMakes, setUniqueMakes] = useState([]);
-  console.log(filteredCarMakes);
-
-  // const [filteredCars, setFilteredCars] = useState([]);
+  const [filteredCarBrands, setFilteredCarBrands] = useState([]);
+  console.log('filteredCarMakes', filteredCarBrands);
 
   const cars = useSelector(selectCarsList);
+  console.log('CARS', cars);
   const selectedBrand = useSelector(selectByBrand);
-  // console.log('selectedBrand before', selectedBrand);
   const selectedPrice = useSelector(selectByPrice);
   const milageFrom = useSelector(selectByMileageFrom);
-
-  useEffect(() => {
-    const allBrands = cars.flatMap((car) => car.make);
-    const uniqueCarMakes = allBrands.filter(
-      (make, index, array) => array.indexOf(make) === index
-    );
-
-    setCarBrandList([
-      { value: 'all', label: 'All car brands' },
-      ...uniqueCarMakes.map((make) => ({
-        value: make,
-        label: make,
-      })),
-    ]);
-
-    setFilteredCarMakes(uniqueCarMakes);
-    setUniqueMakes(uniqueCarMakes);
-  }, [cars]);
 
   useEffect(() => {
     dispatch(
@@ -72,13 +50,16 @@ export default function CarsList() {
     );
   }, [selectedPrice, selectedBrand, milageFrom, dispatch]);
 
-  // const carBrandList = [
-  //   { value: 'all', label: 'All car brands' },
-  //   ...uniqueCarMakes.map((make) => ({
-  //     value: make,
-  //     label: make,
-  //   })),
-  // ];
+  const allBrands = cars.flatMap((car) => car.make);
+  const uniqueCarMakes = [...new Set(allBrands)];
+
+  const carBrandList = [
+    { value: 'all', label: 'All car brands' },
+    ...uniqueCarMakes.map((make) => ({
+      value: make,
+      label: make,
+    })),
+  ];
 
   const carRentalPriceList = [
     { value: 'all', label: 'All car rental prices' },
@@ -90,13 +71,14 @@ export default function CarsList() {
 
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
+
     if (selectedOption.value !== 'all') {
-      const filteredList = uniqueMakes.filter(
+      const filteredList = allBrands.filter(
         (make) => make === selectedOption.value
       );
-      setFilteredCarMakes(filteredList);
+      setFilteredCarBrands(filteredList);
     } else {
-      setFilteredCarMakes(uniqueMakes);
+      setFilteredCarBrands(uniqueCarMakes);
     }
   };
 
@@ -192,16 +174,16 @@ export default function CarsList() {
           <CarsListEl>
             {cars.length > 0 ? (
               cars
-                .filter((car) => {
-                  const selectedCarByBrand =
-                    selectedBrand.value === 'all' ||
-                    car.make === selectedBrand.value;
+                // .filter((car) => {
+                //   const selectedCarByBrand =
+                //     selectedBrand.value === 'all' ||
+                //     car.make === selectedBrand.value;
 
-                  const selectedCarByPrice =
-                    selectedPrice.value === 'all' ||
-                    car.rentalPrice === selectedPrice.value;
-                  return selectedCarByBrand && selectedCarByPrice;
-                })
+                //   const selectedCarByPrice =
+                //     selectedPrice.value === 'all' ||
+                //     car.rentalPrice === selectedPrice.value;
+                //   return selectedCarByBrand && selectedCarByPrice;
+                // })
                 .map((car) => (
                   <ListItem key={car.id}>
                     <CarItem car={car} />
