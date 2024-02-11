@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const filterSlice = createSlice({
   name: 'filter',
   initialState: {
-    filterByBrand: null,
+    filterByBrand: { value: 'all', label: 'All car rental prices' },
     filterByPrice: { value: 'all', label: 'All car rental prices' },
     filterByMileageFrom: '',
     filterByMileageTo: '',

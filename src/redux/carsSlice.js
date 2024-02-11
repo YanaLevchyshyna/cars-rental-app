@@ -19,12 +19,12 @@ const carsSlice = createSlice({
     selectIsLoading: (state) => state.isLoading,
     selectError: (state) => state.error,
   },
-  reducers: {
-    loadMoreCars: (state, action) => {
-      state.page = action.payload.page;
-      state.limit = action.payload.limit;
-    },
-  },
+  // reducers: {
+  //   loadMoreCars: (state, action) => {
+  //     state.page = action.payload.page;
+  //     state.limit = action.payload.limit;
+  //   },
+  // },
   extraReducers: (builder) => {
     builder
       .addCase(getAllCars.pending, (state) => {
@@ -38,15 +38,6 @@ const carsSlice = createSlice({
         // state.page === 1
         //   ? action.payload.map((car) => ({ ...car })) // Копіювати дані без Proxy
         //   : [...state.carsList, ...action.payload.slice(0, state.limit)];
-
-        // console.log(
-        //   'After update - page:',
-        //   state.page,
-        //   'limit:',
-        //   state.limit,
-        //   'carsList:',
-        //   state.carsList
-        // );
       })
       .addCase(getAllCars.rejected, (state, action) => {
         state.isLoading = false;
@@ -55,7 +46,7 @@ const carsSlice = createSlice({
   },
 });
 
-export const { loadMoreCars } = carsSlice.actions;
+// export const { loadMoreCars } = carsSlice.actions;
 
 export const {
   selectPage,

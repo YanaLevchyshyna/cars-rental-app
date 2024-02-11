@@ -21,7 +21,7 @@ export const getAllCars = createAsyncThunk(
     try {
       const queryParams = [];
 
-      console.log('selectedBrand OPERATIONS', selectedBrand);
+      // console.log('selectedBrand OPERATIONS', selectedBrand);
 
       if (selectedPrice && selectedPrice !== 'all') {
         queryParams.push(`filter=${selectedPrice}`);
@@ -38,6 +38,8 @@ export const getAllCars = createAsyncThunk(
         queryParams.length > 0 ? `${queryParams.join('&')}` : '';
 
       const allCars = await fetchAllCars(queryString);
+      console.log('allCars', allCars);
+
       return allCars;
     } catch (error) {
       console.log(error);
