@@ -52,6 +52,7 @@ export default function CarsList() {
 
   const allBrands = cars.flatMap((car) => car.make);
   const uniqueCarMakes = [...new Set(allBrands)];
+  console.log('uniqueCarMakes', uniqueCarMakes);
 
   const carBrandList = [
     { value: 'all', label: 'All car brands' },
@@ -60,6 +61,7 @@ export default function CarsList() {
       label: make,
     })),
   ];
+  console.log('carBrandList', carBrandList);
 
   const carRentalPriceList = [
     { value: 'all', label: 'All car rental prices' },
@@ -73,12 +75,12 @@ export default function CarsList() {
     dispatch(filteredByBrand(selectedOption));
 
     if (selectedOption.value !== 'all') {
-      const filteredList = allBrands.filter(
-        (make) => make === selectedOption.value
+      const filteredList = cars.filter(
+        ({ make }) => make === selectedOption.value
       );
       setFilteredCarBrands(filteredList);
     } else {
-      setFilteredCarBrands(uniqueCarMakes);
+      setFilteredCarBrands(cars);
     }
   };
 
@@ -174,16 +176,16 @@ export default function CarsList() {
           <CarsListEl>
             {cars.length > 0 ? (
               cars
-                // .filter((car) => {
-                //   const selectedCarByBrand =
-                //     selectedBrand.value === 'all' ||
-                //     car.make === selectedBrand.value;
+                .filter((car) => {
+                  const selectedCarByBrand =
+                    selectedBrand.value === 'all' ||
+                    car.make === selectedBrand.value;
 
-                //   const selectedCarByPrice =
-                //     selectedPrice.value === 'all' ||
-                //     car.rentalPrice === selectedPrice.value;
-                //   return selectedCarByBrand && selectedCarByPrice;
-                // })
+                  const selectedCarByPrice =
+                    selectedPrice.value === 'all' ||
+                    car.rentalPrice === selectedPrice.value;
+                  return selectedCarByBrand && selectedCarByPrice;
+                })
                 .map((car) => (
                   <ListItem key={car.id}>
                     <CarItem car={car} />

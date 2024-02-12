@@ -38,7 +38,7 @@ export const getAllCars = createAsyncThunk(
         queryParams.length > 0 ? `${queryParams.join('&')}` : '';
 
       const allCars = await fetchAllCars(queryString);
-      console.log('allCars', allCars);
+      // console.log('allCars', allCars);
 
       return allCars;
     } catch (error) {
