@@ -31,8 +31,8 @@ import { firstSelectStyles } from '../../constants/selectStyles';
 export default function CarsList() {
   const dispatch = useDispatch();
   const [inputQuery, setInputQuery] = useState('');
-  const [filteredCarBrands, setFilteredCarBrands] = useState([]);
-  console.log('filteredCarMakes', filteredCarBrands);
+  // const [filteredCarBrands, setFilteredCarBrands] = useState([]);
+  // console.log('filteredCarMakes', filteredCarBrands);
 
   const cars = useSelector(selectCarsList);
   console.log('CARS', cars);
@@ -61,7 +61,7 @@ export default function CarsList() {
       label: make,
     })),
   ];
-  console.log('carBrandList', carBrandList);
+  // console.log('carBrandList', carBrandList);
 
   const carRentalPriceList = [
     { value: 'all', label: 'All car rental prices' },
@@ -74,14 +74,14 @@ export default function CarsList() {
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
 
-    if (selectedOption.value !== 'all') {
-      const filteredList = cars.filter(
-        ({ make }) => make === selectedOption.value
-      );
-      setFilteredCarBrands(filteredList);
-    } else {
-      setFilteredCarBrands(cars);
-    }
+    // if (selectedOption.value !== 'all') {
+    //   const filteredList = cars.filter(
+    //     ({ make }) => make === selectedOption.value
+    //   );
+    //   setFilteredCarBrands(filteredList);
+    // } else {
+    //   setFilteredCarBrands(cars);
+    // }
   };
 
   const handlePriceChange = (selectedOption) => {
