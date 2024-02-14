@@ -7,13 +7,13 @@ import {
   selectByPrice,
   selectByMileageFrom,
 } from '../../redux/filterSlice';
-import { selectCarsList } from '../../redux/carsSlice';
+import { selectCarsList, selectCarMake } from '../../redux/carsSlice';
 import {
   filteredByMileageFrom,
   filteredByBrand,
   filteredByPrice,
 } from '../../redux/filterSlice';
-import { getAllCars } from '../../redux/operations';
+import { getAllCars, getCarMakes } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
 import {
   Wrapper,
@@ -38,9 +38,16 @@ export default function CarsList() {
 
   const cars = useSelector(selectCarsList);
   // console.log('CARS', cars);
+  const carBrands = useSelector(selectCarMake);
+  // console.log('carBrands', carBrands);
+
   const selectedBrand = useSelector(selectByBrand);
   const selectedPrice = useSelector(selectByPrice);
   const milageFrom = useSelector(selectByMileageFrom);
+
+  useEffect(() => {
+    dispatch(getCarMakes());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(
@@ -54,7 +61,7 @@ export default function CarsList() {
     );
   }, [selectedPrice, selectedBrand, milageFrom, currentPage, dispatch]);
 
-  const allBrands = cars.flatMap((car) => car.make);
+  const allBrands = carBrands.flatMap((car) => car.make);
   const uniqueCarMakes = [...new Set(allBrands)];
   // console.log('uniqueCarMakes', uniqueCarMakes);
 
