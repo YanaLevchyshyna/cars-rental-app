@@ -17,7 +17,7 @@ import { fetchAllCars } from '../fetch-cars/fetchCars';
 
 export const getAllCars = createAsyncThunk(
   'cars/getAllCars',
-  async ({ selectedPrice, selectedBrand, query }, thunkAPI) => {
+  async ({ selectedPrice, selectedBrand, query, page, limit }, thunkAPI) => {
     try {
       const queryParams = [];
 

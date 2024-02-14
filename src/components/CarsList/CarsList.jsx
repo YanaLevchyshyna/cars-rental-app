@@ -24,7 +24,7 @@ import {
   InputFromEl,
   InputToEl,
   SearchButton,
-  // Button,
+  Button,
 } from './CarsList.styled';
 import { firstSelectStyles } from '../../constants/selectStyles';
 
@@ -34,8 +34,10 @@ export default function CarsList() {
   // const [filteredCarBrands, setFilteredCarBrands] = useState([]);
   // console.log('filteredCarMakes', filteredCarBrands);
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   const cars = useSelector(selectCarsList);
-  console.log('CARS', cars);
+  // console.log('CARS', cars);
   const selectedBrand = useSelector(selectByBrand);
   const selectedPrice = useSelector(selectByPrice);
   const milageFrom = useSelector(selectByMileageFrom);
@@ -46,13 +48,15 @@ export default function CarsList() {
         selectedBrand: selectedBrand.value,
         selectedPrice: selectedPrice.value,
         milageFrom,
+        page: currentPage,
+        limit: 12,
       })
     );
-  }, [selectedPrice, selectedBrand, milageFrom, dispatch]);
+  }, [selectedPrice, selectedBrand, milageFrom, currentPage, dispatch]);
 
   const allBrands = cars.flatMap((car) => car.make);
   const uniqueCarMakes = [...new Set(allBrands)];
-  console.log('uniqueCarMakes', uniqueCarMakes);
+  // console.log('uniqueCarMakes', uniqueCarMakes);
 
   const carBrandList = [
     { value: 'all', label: 'All car brands' },
@@ -70,6 +74,11 @@ export default function CarsList() {
       label: rentalPrice,
     })),
   ];
+
+  const handleLoadMore = () => {
+    setCurrentPage((currentPage) => currentPage + 1);
+    // console.log('prevPage', currentPage);
+  };
 
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
@@ -97,7 +106,7 @@ export default function CarsList() {
     // console.log('EVENT ===>', e);
     e.preventDefault();
     const { value } = e.target;
-    console.log('searchValueFrom', value);
+    // console.log('searchValueFrom', value);
     dispatch(filteredByMileageFrom(value));
   };
 
@@ -199,7 +208,7 @@ export default function CarsList() {
             )}
           </CarsListEl>
         </Section>
-        {/* <Button onClick={handleLoadMore}>Load more</Button> */}
+        <Button onClick={handleLoadMore}>Load more</Button>
       </Wrapper>
     </>
   );
