@@ -72,13 +72,21 @@ export default function CarsList() {
       label: make,
     })),
   ];
-  // console.log('carBrandList', carBrandList);
+
+  const uniquePrices = [
+    ...new Set(
+      carOptions.map(({ rentalPrice }) => rentalPrice.replace('$', ''))
+    ),
+  ];
+  const ascendingPrices = [...uniquePrices].sort(
+    (a, b) => Number(a) - Number(b)
+  );
 
   const carRentalPriceList = [
     { value: 'all', label: 'All car rental prices' },
-    ...cars.map(({ rentalPrice }) => ({
-      value: rentalPrice,
-      label: rentalPrice,
+    ...ascendingPrices.map((rentalPrice) => ({
+      value: `$${rentalPrice}`,
+      label: `$${rentalPrice}`,
     })),
   ];
 
