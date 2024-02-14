@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // import { getCars } from '../redux/operations';
-import { getAllCars, getCarMakes } from '../redux/operations';
+import { getAllCars, getCarOptions } from '../redux/operations';
 
 const carsSlice = createSlice({
   name: 'cars',
   initialState: {
-    carMakes: [],
+    carOptions: [],
     carsList: [],
     isLoading: false,
     error: null,
   },
   selectors: {
-    selectCarMake: (state) => state.carMakes,
+    selectCarOptions: (state) => state.carOptions,
     selectCarsList: (state) => state.carsList,
     selectIsLoading: (state) => state.isLoading,
     selectError: (state) => state.error,
@@ -41,16 +41,16 @@ const carsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(getCarMakes.fulfilled, (state, action) => {
+      .addCase(getCarOptions.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.carMakes = action.payload;
+        state.carOptions = action.payload;
       })
-      .addCase(getCarMakes.pending, (state) => {
+      .addCase(getCarOptions.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getCarMakes.rejected, (state, action) => {
+      .addCase(getCarOptions.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -59,7 +59,11 @@ const carsSlice = createSlice({
 
 // export const { loadMoreCars } = carsSlice.actions;
 
-export const { selectCarMake, selectCarsList, selectError, selectIsLoading } =
-  carsSlice.selectors;
+export const {
+  selectCarOptions,
+  selectCarsList,
+  selectError,
+  selectIsLoading,
+} = carsSlice.selectors;
 
 export default carsSlice.reducer;

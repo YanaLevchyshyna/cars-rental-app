@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchAllCars, fetchCarMakes } from '../fetch-cars/fetchCars';
+import { fetchAllCars, fetchCarOptions } from '../fetch-cars/fetchCars';
 
-export const getCarMakes = createAsyncThunk(
+export const getCarOptions = createAsyncThunk(
   'cars/getCarMakes',
   async (_, { rejectWithValue }) => {
     try {
-      const carMakes = await fetchCarMakes();
+      const carMakes = await fetchCarOptions();
       // console.log('carMakes', carMakes);
       return carMakes;
     } catch (error) {

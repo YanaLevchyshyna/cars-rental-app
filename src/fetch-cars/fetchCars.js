@@ -8,7 +8,7 @@ export async function fetchAllCars(queryString) {
   return data;
 }
 
-export async function fetchCarMakes() {
+export async function fetchCarOptions() {
   const { data } = await axios.get('/cars');
   // console.log('DATA MAKES', data);
   return data;
