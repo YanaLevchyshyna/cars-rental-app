@@ -6,12 +6,14 @@ import {
   selectByBrand,
   selectByPrice,
   selectByMileageFrom,
+  selectByMileageTo,
 } from '../../redux/filterSlice';
 import { selectCarsList, selectCarOptions } from '../../redux/carsSlice';
 import {
   filteredByMileageFrom,
   filteredByBrand,
   filteredByPrice,
+  filteredByMileageTo,
 } from '../../redux/filterSlice';
 import { getAllCars, getCarOptions } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
@@ -30,9 +32,8 @@ import { firstSelectStyles } from '../../constants/selectStyles';
 
 export default function CarsList() {
   const dispatch = useDispatch();
-  const [inputQuery, setInputQuery] = useState('');
-  // const [filteredCarBrands, setFilteredCarBrands] = useState([]);
-  // console.log('filteredCarMakes', filteredCarBrands);
+  const [inputQueryFrom, setInputQueryFrom] = useState('');
+  const [inputQueryTo, setInputQueryTo] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -44,6 +45,7 @@ export default function CarsList() {
   const selectedBrand = useSelector(selectByBrand);
   const selectedPrice = useSelector(selectByPrice);
   const milageFrom = useSelector(selectByMileageFrom);
+  const milageTo = useSelector(selectByMileageTo);
 
   useEffect(() => {
     dispatch(getCarOptions());
@@ -55,11 +57,19 @@ export default function CarsList() {
         selectedBrand: selectedBrand.value,
         selectedPrice: selectedPrice.value,
         milageFrom,
+        milageTo,
         page: currentPage,
         limit: 12,
       })
     );
-  }, [selectedPrice, selectedBrand, milageFrom, currentPage, dispatch]);
+  }, [
+    selectedPrice,
+    selectedBrand,
+    milageFrom,
+    milageTo,
+    currentPage,
+    dispatch,
+  ]);
 
   const allBrands = carOptions.flatMap((car) => car.make);
   const uniqueCarMakes = [...new Set(allBrands)];
@@ -97,32 +107,29 @@ export default function CarsList() {
 
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
-
-    // if (selectedOption.value !== 'all') {
-    //   const filteredList = cars.filter(
-    //     ({ make }) => make === selectedOption.value
-    //   );
-    //   setFilteredCarBrands(filteredList);
-    // } else {
-    //   setFilteredCarBrands(cars);
-    // }
   };
 
   const handlePriceChange = (selectedOption) => {
     dispatch(filteredByPrice(selectedOption));
   };
 
-  const handleChange = (e) => {
+  const handleFromInputChange = (e) => {
     const { value } = e.target;
-    setInputQuery(value);
+    setInputQueryFrom(value);
+  };
+
+  const handleToInputChange = (e) => {
+    const { value } = e.target;
+    setInputQueryTo(value);
   };
 
   const handleSearch = (e) => {
-    // console.log('EVENT ===>', e);
+    console.log('EVENT ===>', e);
     e.preventDefault();
-    const { value } = e.target;
-    // console.log('searchValueFrom', value);
-    dispatch(filteredByMileageFrom(value));
+    const searchValueFrom = e.target.elements[0].value;
+    const searchValueTo = e.target.elements[1].value;
+    dispatch(filteredByMileageFrom(searchValueFrom));
+    dispatch(filteredByMileageTo(searchValueTo));
   };
 
   // const resetForm = () => {
@@ -179,8 +186,8 @@ export default function CarsList() {
               type="text"
               placeholder="From"
               name="mileageFrom"
-              value={inputQuery}
-              onChange={handleChange}
+              value={inputQueryFrom}
+              onChange={handleFromInputChange}
             />
           </label>
           <label htmlFor="">
@@ -188,8 +195,8 @@ export default function CarsList() {
               type="text"
               placeholder="To"
               name="mileageTo"
-              value={inputQuery}
-              onChange={handleChange}
+              value={inputQueryTo}
+              onChange={handleToInputChange}
             />
           </label>
           <SearchButton type="submit">Search</SearchButton>

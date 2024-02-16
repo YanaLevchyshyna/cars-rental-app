@@ -12,7 +12,7 @@ const filterSlice = createSlice({
     selectByBrand: (state) => state.filterByBrand,
     selectByPrice: (state) => state.filterByPrice,
     selectByMileageFrom: (state) => state.filterByMileageFrom,
-    selectedByMileageTo: (state) => state.filterByMileageTo,
+    selectByMileageTo: (state) => state.filterByMileageTo,
   },
   reducers: {
     filteredByBrand: (state, action) => {
@@ -41,7 +41,7 @@ export const {
   selectByBrand,
   selectByPrice,
   selectByMileageFrom,
-  selectedByMileageTo,
+  selectByMileageTo,
 } = filterSlice.selectors;
 
 export default filterSlice.reducer;
