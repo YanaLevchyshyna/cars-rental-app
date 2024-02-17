@@ -126,8 +126,9 @@ export default function CarsList() {
   const handleSearch = (e) => {
     console.log('EVENT ===>', e);
     e.preventDefault();
-    const searchValueFrom = e.target.elements[0].value;
-    const searchValueTo = e.target.elements[1].value;
+
+    const searchValueFrom = Math.round(parseFloat(inputQueryFrom));
+    const searchValueTo = Math.round(parseFloat(inputQueryTo));
     dispatch(filteredByMileageFrom(searchValueFrom));
     dispatch(filteredByMileageTo(searchValueTo));
   };
