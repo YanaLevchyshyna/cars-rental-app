@@ -25,7 +25,8 @@ const filterSlice = createSlice({
       state.filterByMileageFrom = action.payload;
     },
     filteredByMileageTo: (state, action) => {
-      state.filterByMileageTo = action.payload;
+      const roundedValue = Math.round(parseFloat(action.payload));
+      state.filterByMileageTo = roundedValue;
     },
   },
 });

@@ -6,14 +6,14 @@ import {
   selectByBrand,
   selectByPrice,
   selectByMileageFrom,
-  selectByMileageTo,
+  // selectByMileageTo,
 } from '../../redux/filterSlice';
 import { selectCarsList, selectCarOptions } from '../../redux/carsSlice';
 import {
   filteredByMileageFrom,
   filteredByBrand,
   filteredByPrice,
-  filteredByMileageTo,
+  // filteredByMileageTo,
 } from '../../redux/filterSlice';
 import { getAllCars, getCarOptions } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
@@ -35,7 +35,7 @@ export default function CarsList() {
   const [inputQueryFrom, setInputQueryFrom] = useState('');
   const [inputQueryTo, setInputQueryTo] = useState('');
 
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
 
   const cars = useSelector(selectCarsList);
   // console.log('CARS', cars);
@@ -44,8 +44,8 @@ export default function CarsList() {
 
   const selectedBrand = useSelector(selectByBrand);
   const selectedPrice = useSelector(selectByPrice);
-  const milageFrom = useSelector(selectByMileageFrom);
-  const milageTo = useSelector(selectByMileageTo);
+  const query = useSelector(selectByMileageFrom);
+  // const milageTo = useSelector(selectByMileageTo);
 
   useEffect(() => {
     dispatch(getCarOptions());
@@ -56,20 +56,10 @@ export default function CarsList() {
       getAllCars({
         selectedBrand: selectedBrand.value,
         selectedPrice: selectedPrice.value,
-        milageFrom,
-        milageTo,
-        page: currentPage,
-        limit: 12,
+        query,
       })
     );
-  }, [
-    selectedPrice,
-    selectedBrand,
-    milageFrom,
-    milageTo,
-    currentPage,
-    dispatch,
-  ]);
+  }, [selectedBrand, selectedPrice, query, dispatch]);
 
   const allBrands = carOptions.flatMap((car) => car.make);
   const uniqueCarMakes = [...new Set(allBrands)];
@@ -100,10 +90,10 @@ export default function CarsList() {
     })),
   ];
 
-  const handleLoadMore = () => {
-    setCurrentPage((currentPage) => currentPage + 1);
-    // console.log('prevPage', currentPage);
-  };
+  // const handleLoadMore = () => {
+  //   setCurrentPage((currentPage) => currentPage + 1);
+  //   // console.log('prevPage', currentPage);
+  // };
 
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
@@ -127,10 +117,10 @@ export default function CarsList() {
     console.log('EVENT ===>', e);
     e.preventDefault();
 
-    const searchValueFrom = Math.round(parseFloat(inputQueryFrom));
-    const searchValueTo = Math.round(parseFloat(inputQueryTo));
+    const searchValueFrom = e.target.elements[0].value;
+    // const searchValueTo = Math.round(parseFloat(inputQueryTo));
     dispatch(filteredByMileageFrom(searchValueFrom));
-    dispatch(filteredByMileageTo(searchValueTo));
+    // dispatch(filteredByMileageTo(searchValueTo));
   };
 
   // const resetForm = () => {
@@ -231,7 +221,7 @@ export default function CarsList() {
             )}
           </CarsListEl>
         </Section>
-        <Button onClick={handleLoadMore}>Load more</Button>
+        <Button>Load more</Button>
       </Wrapper>
     </>
   );
