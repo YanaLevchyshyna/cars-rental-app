@@ -8,6 +8,7 @@ const carsSlice = createSlice({
   initialState: {
     carOptions: [],
     carsList: [],
+    showModal: false,
     isLoading: false,
     error: null,
   },
@@ -16,13 +17,17 @@ const carsSlice = createSlice({
     selectCarsList: (state) => state.carsList,
     selectIsLoading: (state) => state.isLoading,
     selectError: (state) => state.error,
+    selectModal: (state) => state.showModal,
   },
-  // reducers: {
-  //   loadMoreCars: (state, action) => {
-  //     state.page = action.payload.page;
-  //     state.limit = action.payload.limit;
-  //   },
-  // },
+  reducers: {
+    // loadMoreCars: (state, action) => {
+    //   state.page = action.payload.page;
+    //   state.limit = action.payload.limit;
+    // },
+    openModal: (state) => {
+      state.showModal = !state.showModal;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllCars.pending, (state) => {
@@ -57,13 +62,14 @@ const carsSlice = createSlice({
   },
 });
 
-// export const { loadMoreCars } = carsSlice.actions;
+export const { openModal } = carsSlice.actions;
 
 export const {
   selectCarOptions,
   selectCarsList,
   selectError,
   selectIsLoading,
+  selectModal,
 } = carsSlice.selectors;
 
 export default carsSlice.reducer;

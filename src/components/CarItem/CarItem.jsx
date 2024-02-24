@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import { selectFavorite } from '../../redux/selectors';
 import { selectFavorite } from '../../redux/favoriteSlice';
+import { selectModal } from '../../redux/carsSlice';
+import { openModal } from '../../redux/carsSlice';
+import Modal from '../Modal/Modal';
 
 import {
   addCarToFavorite,
@@ -10,6 +12,7 @@ import {
 } from '../../redux/favoriteSlice';
 import sprite from '../../constants/sprite.svg';
 import defaultCar from '../DefaultImage/defaultCar1.jpeg';
+
 import {
   HeartSvg,
   HeartButton,
@@ -23,6 +26,8 @@ import {
 export default function CarItem({ car }) {
   const dispatch = useDispatch();
   const favorite = useSelector(selectFavorite);
+  const isOpen = useSelector(selectModal);
+
   const isCarAdded = favorite.some((item) => item.id === car.id);
 
   const handleToggleFavorite = (e) => {
@@ -33,6 +38,10 @@ export default function CarItem({ car }) {
     } else {
       dispatch(addCarToFavorite(car));
     }
+  };
+
+  const toggleModal = () => {
+    dispatch(openModal());
   };
 
   const {
@@ -75,7 +84,10 @@ export default function CarItem({ car }) {
         <li>{year}</li>
         <li>{functionalities[0]}</li>
       </SecondList>
-      <Button>Learn more</Button>
+      <Button type="button" onClick={toggleModal}>
+        Learn more
+      </Button>
+      {isOpen && <Modal onClick={toggleModal} />}
     </>
   );
 }
