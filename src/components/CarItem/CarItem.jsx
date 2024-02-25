@@ -41,7 +41,7 @@ export default function CarItem({ car }) {
   };
 
   const toggleModal = () => {
-    dispatch(openModal());
+    dispatch(openModal(car));
   };
 
   const {
