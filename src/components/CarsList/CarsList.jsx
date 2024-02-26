@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 
+// import Modal from '../Modal/Modal';
 import {
   selectByBrand,
   selectByPrice,
@@ -125,6 +126,12 @@ export default function CarsList() {
 
   // const resetForm = () => {
   //   setInputQuery('');
+  // };
+
+  // const [showModal, setShowModal] = useState(false);
+
+  // const toggleModal = () => {
+  //   setShowModal((prevState) => !prevState);
   // };
 
   return (

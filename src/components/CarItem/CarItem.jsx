@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { selectFavorite } from '../../redux/favoriteSlice';
 import Modal from '../Modal/Modal';
-
 import {
   addCarToFavorite,
   deleteCarFromFavorite,
@@ -40,10 +39,6 @@ export default function CarItem({ car }) {
     }
   };
 
-  const toggleModal = () => {
-    setShowModal((prevState) => !prevState);
-  };
-
   const {
     make,
     model,
@@ -59,6 +54,10 @@ export default function CarItem({ car }) {
   const addressParts = address.split(', ');
   const city = addressParts[1];
   const country = addressParts[2];
+
+  const toggleModal = () => {
+    setShowModal((prevState) => !prevState);
+  };
 
   return (
     <>
@@ -87,7 +86,7 @@ export default function CarItem({ car }) {
       <Button type="button" onClick={toggleModal}>
         Learn more
       </Button>
-      {showModal && <Modal onClick={toggleModal} />}
+      {showModal && <Modal onClick={toggleModal} car={car} />}
     </>
   );
 }
