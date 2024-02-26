@@ -8,8 +8,6 @@ const carsSlice = createSlice({
   initialState: {
     carOptions: [],
     carsList: [],
-    showModal: false,
-    carModal: null,
     isLoading: false,
     error: null,
   },
@@ -18,18 +16,12 @@ const carsSlice = createSlice({
     selectCarsList: (state) => state.carsList,
     selectIsLoading: (state) => state.isLoading,
     selectError: (state) => state.error,
-    selectModal: (state) => state.showModal,
-    selectCarModal: (state) => state.carModal,
   },
   reducers: {
     // loadMoreCars: (state, action) => {
     //   state.page = action.payload.page;
     //   state.limit = action.payload.limit;
     // },
-    openModal: (state, action) => {
-      state.showModal = !state.showModal;
-      state.carModal = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -65,15 +57,13 @@ const carsSlice = createSlice({
   },
 });
 
-export const { openModal } = carsSlice.actions;
+// export const { openModal } = carsSlice.actions;
 
 export const {
   selectCarOptions,
   selectCarsList,
   selectError,
   selectIsLoading,
-  selectModal,
-  selectCarModal,
 } = carsSlice.selectors;
 
 export default carsSlice.reducer;

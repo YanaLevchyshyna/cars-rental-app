@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { AiOutlineClose } from 'react-icons/ai';
-import { selectModal } from '../../redux/carsSlice';
 
 import PropTypes from 'prop-types';
 
@@ -17,9 +15,6 @@ import {
 const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal({ onClick }) {
-  const modalCar = useSelector(selectModal);
-  console.log('modalCar', modalCar);
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === 'Escape') {

@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { selectFavorite } from '../../redux/favoriteSlice';
-import { selectModal } from '../../redux/carsSlice';
-import { openModal } from '../../redux/carsSlice';
 import Modal from '../Modal/Modal';
 
 import {
@@ -24,9 +23,10 @@ import {
 } from './CarItem.styled';
 
 export default function CarItem({ car }) {
+  const [showModal, setShowModal] = useState(false);
+
   const dispatch = useDispatch();
   const favorite = useSelector(selectFavorite);
-  const isOpen = useSelector(selectModal);
 
   const isCarAdded = favorite.some((item) => item.id === car.id);
 
@@ -41,7 +41,7 @@ export default function CarItem({ car }) {
   };
 
   const toggleModal = () => {
-    dispatch(openModal(car));
+    setShowModal((prevState) => !prevState);
   };
 
   const {
@@ -87,7 +87,7 @@ export default function CarItem({ car }) {
       <Button type="button" onClick={toggleModal}>
         Learn more
       </Button>
-      {isOpen && <Modal onClick={toggleModal} />}
+      {showModal && <Modal onClick={toggleModal} />}
     </>
   );
 }
