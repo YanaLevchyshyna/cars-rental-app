@@ -16,6 +16,9 @@ import {
   SecondList,
   Image,
   Description,
+  Paragraph,
+  ThirdList,
+  FourthList,
 } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -86,22 +89,22 @@ export default function Modal({ onClick, car }) {
             <li>Engine size: {engineSize}</li>
           </SecondList>
           <Description>{description}</Description>
-          <p>Accessories and functionalities:</p>
-          <ul>
+          <Paragraph>Accessories and functionalities:</Paragraph>
+          <ThirdList>
             <li></li>
             <li></li>
             <li></li>
             <li></li>
             <li></li>
             <li></li>
-          </ul>
-          <ul>
-            <li>Rental Conditions:</li>
+          </ThirdList>
+          <Paragraph>Rental Conditions:</Paragraph>
+          <FourthList>
             <li>Minimum age:</li>
             <li>Security deposite required</li>
             <li>Mileage: {addCommaToMileage(mileage)}</li>
             <li>Price: {rentalPrice}</li>
-          </ul>
+          </FourthList>
         </SecondContainer>
       </ModalContetnt>
     </ModalBackdrop>,

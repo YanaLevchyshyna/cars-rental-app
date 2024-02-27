@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const ModalBackdrop = styled.div`
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;
@@ -142,4 +143,77 @@ export const Image = styled.img`
 export const Description = styled.p`
   font-size: 14px;
   line-height: 1.43;
+  margin-bottom: 10px;
+`;
+
+export const Paragraph = styled.p`
+  font-size: 14px;
+  line-height: 1.43;
+`;
+
+export const ThirdList = styled.ul`
+  display: flex;
+  margin-bottom: 10px;
+
+  li {
+    color: ${(props) => props.theme.colors.text};
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    margin-right: 12px;
+    background-color: #f9f9f9;
+
+    &:last-child {
+      margin-right: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; /* Додає три крапочки для обрізання тексту */
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -6px;
+      transform: translateY(-50%);
+      height: 16px;
+      width: 1px;
+      background-color: ${(props) => props.theme.colors.after};
+    }
+  }
+`;
+
+export const FourthList = styled.ul`
+  display: flex;
+  margin-bottom: 10px;
+
+  li {
+    color: ${(props) => props.theme.colors.text};
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    margin-right: 12px;
+
+    &:last-child {
+      margin-right: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; /* Додає три крапочки для обрізання тексту */
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -6px;
+      transform: translateY(-50%);
+      height: 16px;
+      width: 1px;
+      background-color: ${(props) => props.theme.colors.after};
+    }
+  }
 `;
