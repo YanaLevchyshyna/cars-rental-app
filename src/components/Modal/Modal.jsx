@@ -19,6 +19,7 @@ import {
   Paragraph,
   ThirdList,
   FourthList,
+  SpanLi,
 } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -38,6 +39,8 @@ export default function Modal({ onClick, car }) {
     engineSize,
     description,
     mileage,
+    functionalities,
+    accessories,
   } = car;
 
   const addressParts = address.split(', ');
@@ -91,19 +94,23 @@ export default function Modal({ onClick, car }) {
           <Description>{description}</Description>
           <Paragraph>Accessories and functionalities:</Paragraph>
           <ThirdList>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            {accessories?.map((item) => (
+              <li>{item}</li>
+            ))}
+            {functionalities?.map((item) => (
+              <li>{item}</li>
+            ))}
           </ThirdList>
           <Paragraph>Rental Conditions:</Paragraph>
           <FourthList>
             <li>Minimum age:</li>
             <li>Security deposite required</li>
-            <li>Mileage: {addCommaToMileage(mileage)}</li>
-            <li>Price: {rentalPrice}</li>
+            <li>
+              Mileage: <SpanLi>{addCommaToMileage(mileage)}</SpanLi>
+            </li>
+            <li>
+              Price: <SpanLi>{rentalPrice}</SpanLi>
+            </li>
           </FourthList>
         </SecondContainer>
       </ModalContetnt>

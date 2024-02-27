@@ -32,7 +32,7 @@ export const ModalContetnt = styled.div`
 
 export const FirstContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 10px;
 `;
@@ -138,12 +138,13 @@ export const SecondList = styled.ul`
 
 export const Image = styled.img`
   border-radius: 20px;
+  height: 250px;
 `;
 
 export const Description = styled.p`
   font-size: 14px;
   line-height: 1.43;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 
 export const Paragraph = styled.p`
@@ -152,7 +153,6 @@ export const Paragraph = styled.p`
 `;
 
 export const ThirdList = styled.ul`
-  display: flex;
   margin-bottom: 10px;
 
   li {
@@ -163,7 +163,6 @@ export const ThirdList = styled.ul`
     position: relative;
     display: inline-block;
     margin-right: 12px;
-    background-color: #f9f9f9;
 
     &:last-child {
       margin-right: 0;
@@ -190,13 +189,18 @@ export const FourthList = styled.ul`
   margin-bottom: 10px;
 
   li {
-    color: ${(props) => props.theme.colors.text};
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.5;
     position: relative;
     display: inline-block;
     margin-right: 12px;
+    padding: 7px 14px;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: ${(props) => props.theme.colors.text};
+    background-color: #f9f9f9;
+    border-radius: 35px;
 
     &:last-child {
       margin-right: 0;
@@ -216,4 +220,11 @@ export const FourthList = styled.ul`
       background-color: ${(props) => props.theme.colors.after};
     }
   }
+`;
+
+export const SpanLi = styled.span`
+  color: ${(props) => props.theme.colors.primary};
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
 `;
