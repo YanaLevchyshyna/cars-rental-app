@@ -21,12 +21,11 @@ export const ModalContetnt = styled.div`
   padding: 24px 16px;
   width: 100%;
   max-width: 540px;
-  height: 600px;
+  height: 640px;
 
   background-color: #fcfcfc;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
   transition: transform 250ms linear;
 `;
 
@@ -190,6 +189,7 @@ export const ThirdList = styled.ul`
 export const FourthList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 7px;
 
   li {
     position: relative;
@@ -234,4 +234,26 @@ export const SpanLi = styled.span`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
+`;
+
+export const Button = styled.button`
+  padding: 12px 50px;
+  width: 168px;
+  height: 44px;
+
+  font-size: ${(props) => props.theme.fontSizes.s};
+  font-weight: ${(props) => props.theme.fontWeights.medium};
+  line-height: 1.43;
+  border: ${(props) => props.theme.borders.none};
+  border-radius: ${(props) => props.theme.radius.normal};
+  background-color: ${(props) => props.theme.colors.primary};
+  color: #ffffff;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors.secondary};
+  }
 `;

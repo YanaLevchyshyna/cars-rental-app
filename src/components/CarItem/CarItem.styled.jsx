@@ -103,6 +103,8 @@ export const Button = styled.button`
   border: ${(props) => props.theme.borders.none};
   border-radius: ${(props) => props.theme.radius.normal};
   background-color: ${(props) => props.theme.colors.primary};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 
   &:hover {

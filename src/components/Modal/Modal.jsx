@@ -20,6 +20,7 @@ import {
   ThirdList,
   FourthList,
   SpanLi,
+  Button,
 } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -123,6 +124,7 @@ export default function Modal({ onClick, car }) {
             </li>
           </FourthList>
         </SecondContainer>
+        <Button>Rental car</Button>
       </ModalContetnt>
     </ModalBackdrop>,
     modalRoot
