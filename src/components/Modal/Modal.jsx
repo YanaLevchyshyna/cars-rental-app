@@ -41,11 +41,18 @@ export default function Modal({ onClick, car }) {
     mileage,
     functionalities,
     accessories,
+    rentalConditions,
   } = car;
 
   const addressParts = address.split(', ');
   const city = addressParts[1];
   const country = addressParts[2];
+
+  const rentalConditionsParts = rentalConditions.split('\n');
+  const minimumAge = rentalConditionsParts[0];
+  const age = minimumAge.split(':')[1];
+  const validLicense = rentalConditionsParts[1];
+  const insuranceCoverage = rentalConditionsParts[2];
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -103,8 +110,11 @@ export default function Modal({ onClick, car }) {
           </ThirdList>
           <Paragraph>Rental Conditions:</Paragraph>
           <FourthList>
-            <li>Minimum age:</li>
-            <li>Security deposite required</li>
+            <li>
+              Minimum age: <SpanLi>{age}</SpanLi>
+            </li>
+            <li>{validLicense}</li>
+            <li>{insuranceCoverage}</li>
             <li>
               Mileage: <SpanLi>{addCommaToMileage(mileage)}</SpanLi>
             </li>

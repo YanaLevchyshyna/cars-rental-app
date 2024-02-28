@@ -21,7 +21,7 @@ export const ModalContetnt = styled.div`
   padding: 24px 16px;
   width: 100%;
   max-width: 540px;
-  height: 700px;
+  height: 600px;
 
   background-color: #fcfcfc;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
@@ -45,7 +45,6 @@ export const CloseButton = styled.button`
   justify-content: center;
   margin-left: auto;
   padding: 0;
-  margin-bottom: 24px;
   background-color: ${(props) => props.theme.colors.secondary};
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: ${(props) => props.theme.radius.round};
@@ -138,22 +137,25 @@ export const SecondList = styled.ul`
 
 export const Image = styled.img`
   border-radius: 20px;
-  height: 250px;
+  height: 248px;
 `;
 
 export const Description = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.43;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 `;
 
 export const Paragraph = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.43;
+  margin-bottom: 5px;
 `;
 
 export const ThirdList = styled.ul`
-  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
 
   li {
     color: ${(props) => props.theme.colors.text};
@@ -163,12 +165,13 @@ export const ThirdList = styled.ul`
     position: relative;
     display: inline-block;
     margin-right: 12px;
+    margin-bottom: 5px;
 
     &:last-child {
       margin-right: 0;
+      margin-bottom: 0;
       overflow: hidden;
       white-space: nowrap;
-      text-overflow: ellipsis; /* Додає три крапочки для обрізання тексту */
     }
 
     &:not(:last-child)::after {
@@ -186,12 +189,13 @@ export const ThirdList = styled.ul`
 
 export const FourthList = styled.ul`
   display: flex;
-  margin-bottom: 10px;
+  flex-wrap: wrap;
 
   li {
     position: relative;
     display: inline-block;
     margin-right: 12px;
+    margin-bottom: 5px;
     padding: 7px 14px;
 
     font-size: 12px;
@@ -206,7 +210,10 @@ export const FourthList = styled.ul`
       margin-right: 0;
       overflow: hidden;
       white-space: nowrap;
-      text-overflow: ellipsis; /* Додає три крапочки для обрізання тексту */
+    }
+
+    &:nth-last-child(-n + 2) {
+      margin-bottom: 0;
     }
 
     &:not(:last-child)::after {
