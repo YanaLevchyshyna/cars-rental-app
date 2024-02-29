@@ -17,7 +17,7 @@ export const getCarOptions = createAsyncThunk(
 
 export const getAllCars = createAsyncThunk(
   'cars/getAllCars',
-  async ({ selectedBrand, selectedPrice, query }, thunkAPI) => {
+  async ({ selectedBrand, selectedPrice, query, page, limit }, thunkAPI) => {
     try {
       const queryParams = [];
 
@@ -34,6 +34,15 @@ export const getAllCars = createAsyncThunk(
       if (query && query.trim() !== '') {
         queryParams.push(`mileage=${query}`);
       }
+
+      if (page) {
+        queryParams.push(`page=${page}`);
+      }
+
+      if (limit) {
+        queryParams.push(`limit=${limit}`);
+      }
+
       const queryString =
         queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
 

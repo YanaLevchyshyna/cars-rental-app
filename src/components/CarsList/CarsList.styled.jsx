@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 
 export const Section = styled.section`
   margin-top: 35px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 `;
 
 export const CarsListEl = styled.ul`
@@ -55,7 +55,7 @@ export const Button = styled.button`
   line-height: 1.5;
   text-decoration-line: underline;
 
-  margin-left: 70px;
+  margin-bottom: 70px;
 
   cursor: pointer;
 

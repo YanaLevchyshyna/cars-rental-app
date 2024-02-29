@@ -2,20 +2,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 
-// import Modal from '../Modal/Modal';
 import {
   selectByBrand,
   selectByPrice,
   selectByMileageFrom,
   // selectByMileageTo,
 } from '../../redux/filterSlice';
-import { selectCarsList, selectCarOptions } from '../../redux/carsSlice';
+import {
+  selectCarsList,
+  selectCarOptions,
+  selectPage,
+  selectLimit,
+} from '../../redux/carsSlice';
 import {
   filteredByMileageFrom,
   filteredByBrand,
   filteredByPrice,
   // filteredByMileageTo,
 } from '../../redux/filterSlice';
+import { loadMoreCars } from '../../redux/carsSlice';
 import { getAllCars, getCarOptions } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
 import {
@@ -33,13 +38,18 @@ import { firstSelectStyles } from '../../constants/selectStyles';
 
 export default function CarsList() {
   const dispatch = useDispatch();
+
   const [inputQueryFrom, setInputQueryFrom] = useState('');
   const [inputQueryTo, setInputQueryTo] = useState('');
-
   // const [currentPage, setCurrentPage] = useState(1);
+  // const carsPerPage = 12;
 
   const cars = useSelector(selectCarsList);
-  // console.log('CARS', cars);
+  const page = useSelector(selectPage);
+  const limit = useSelector(selectLimit);
+
+  console.log('CARS', limit);
+
   const carOptions = useSelector(selectCarOptions);
   // console.log('carBrands', carBrands);
 
@@ -58,9 +68,16 @@ export default function CarsList() {
         selectedBrand: selectedBrand.value,
         selectedPrice: selectedPrice.value,
         query,
+        page,
+        limit,
       })
     );
-  }, [selectedBrand, selectedPrice, query, dispatch]);
+  }, [selectedBrand, selectedPrice, query, page, limit, dispatch]);
+
+  // console.log('currentPage', page);
+
+  const totalPage = Math.floor(cars.length / limit);
+  // console.log('totalPage', totalPage);
 
   const allBrands = carOptions.flatMap((car) => car.make);
   const uniqueCarMakes = [...new Set(allBrands)];
@@ -91,11 +108,6 @@ export default function CarsList() {
     })),
   ];
 
-  // const handleLoadMore = () => {
-  //   setCurrentPage((currentPage) => currentPage + 1);
-  //   // console.log('prevPage', currentPage);
-  // };
-
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
   };
@@ -122,17 +134,12 @@ export default function CarsList() {
     // const searchValueTo = Math.round(parseFloat(inputQueryTo));
     dispatch(filteredByMileageFrom(searchValueFrom));
     // dispatch(filteredByMileageTo(searchValueTo));
+    resetForm();
   };
 
-  // const resetForm = () => {
-  //   setInputQuery('');
-  // };
-
-  // const [showModal, setShowModal] = useState(false);
-
-  // const toggleModal = () => {
-  //   setShowModal((prevState) => !prevState);
-  // };
+  const resetForm = () => {
+    setInputQueryFrom('');
+  };
 
   return (
     <>
@@ -203,32 +210,31 @@ export default function CarsList() {
       <Wrapper>
         <Section>
           <CarsListEl>
-            {cars.length > 0 ? (
-              cars
-                .filter((car) => {
-                  const selectedCarByBrand =
-                    selectedBrand.value === 'all' ||
-                    car.make === selectedBrand.value;
+            {cars
+              .filter((car) => {
+                const selectedCarByBrand =
+                  selectedBrand.value === 'all' ||
+                  car.make === selectedBrand.value;
 
-                  const selectedCarByPrice =
-                    selectedPrice.value === 'all' ||
-                    car.rentalPrice === selectedPrice.value;
-                  return selectedCarByBrand && selectedCarByPrice;
-                })
-                .map((car) => (
-                  <ListItem key={car.id}>
-                    <CarItem car={car} />
-                  </ListItem>
-                ))
-            ) : (
-              <p>
-                Sorry, your query doesn't match the search criteria. Please try
-                again.
-              </p>
-            )}
+                const selectedCarByPrice =
+                  selectedPrice.value === 'all' ||
+                  car.rentalPrice === selectedPrice.value;
+                return selectedCarByBrand && selectedCarByPrice;
+              })
+              .map((car) => (
+                <ListItem key={car.id}>
+                  <CarItem car={car} />
+                </ListItem>
+              ))}
           </CarsListEl>
         </Section>
-        <Button>Load more</Button>
+        {page <= totalPage && cars.length > 0 && (
+          <Button
+            onClick={() => dispatch(loadMoreCars({ page: page + 1, limit }))}
+          >
+            Load more
+          </Button>
+        )}
       </Wrapper>
     </>
   );
