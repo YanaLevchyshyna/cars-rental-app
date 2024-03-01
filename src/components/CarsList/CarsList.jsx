@@ -103,16 +103,25 @@ export default function CarsList() {
   const carRentalPriceList = [
     { value: 'all', label: 'All car rental prices' },
     ...ascendingPrices.map((rentalPrice) => ({
-      value: `$${rentalPrice}`,
+      value: `${rentalPrice}`,
       label: `$${rentalPrice}`,
     })),
   ];
+
+  // const carRentalPriceList = [
+  //   { value: 'all', label: 'All car rental prices' },
+  //   ...ascendingPrices.map((rentalPrice) => ({
+  //     value: parseInt(rentalPrice, 10), // Перетворення рядкового значення у число
+  //     label: `${rentalPrice}`,
+  //   })),
+  // ];
 
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
   };
 
   const handlePriceChange = (selectedOption) => {
+    console.log('selectedOption', selectedOption);
     dispatch(filteredByPrice(selectedOption));
   };
 
@@ -218,7 +227,7 @@ export default function CarsList() {
 
                 const selectedCarByPrice =
                   selectedPrice.value === 'all' ||
-                  car.rentalPrice === selectedPrice.value;
+                  car.rentalPrice.replace('$', '') === selectedPrice.value;
                 return selectedCarByBrand && selectedCarByPrice;
               })
               .map((car) => (
