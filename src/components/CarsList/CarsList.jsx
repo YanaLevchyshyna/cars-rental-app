@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   selectByBrand,
   selectByPrice,
-  selectByMileageFrom,
-  // selectByMileageTo,
+  selectByMileage,
 } from '../../redux/filterSlice';
 import {
   selectCarsList,
@@ -15,7 +16,7 @@ import {
   selectLimit,
 } from '../../redux/carsSlice';
 import {
-  filteredByMileageFrom,
+  // filteredByMileage,
   filteredByBrand,
   filteredByPrice,
   // filteredByMileageTo,
@@ -41,22 +42,20 @@ export default function CarsList() {
 
   const [inputQueryFrom, setInputQueryFrom] = useState('');
   const [inputQueryTo, setInputQueryTo] = useState('');
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const carsPerPage = 12;
+  console.log('inputQueryFrom', inputQueryFrom);
+  console.log('inputQueryTo', inputQueryTo);
 
   const cars = useSelector(selectCarsList);
   const page = useSelector(selectPage);
   const limit = useSelector(selectLimit);
-
-  console.log('CARS', limit);
 
   const carOptions = useSelector(selectCarOptions);
   // console.log('carBrands', carBrands);
 
   const selectedBrand = useSelector(selectByBrand);
   const selectedPrice = useSelector(selectByPrice);
-  const query = useSelector(selectByMileageFrom);
-  // const milageTo = useSelector(selectByMileageTo);
+  const query = useSelector(selectByMileage);
+  console.log('query', query);
 
   useEffect(() => {
     dispatch(getCarOptions());
@@ -67,14 +66,15 @@ export default function CarsList() {
       getAllCars({
         selectedBrand: selectedBrand.value,
         selectedPrice: selectedPrice.value,
-        query,
         page,
         limit,
       })
     );
-  }, [selectedBrand, selectedPrice, query, page, limit, dispatch]);
+  }, [selectedBrand, selectedPrice, page, limit, dispatch]);
 
-  // console.log('currentPage', page);
+  // useEffect(() => {
+
+  // })
 
   const totalPage = Math.floor(cars.length / limit);
   // console.log('totalPage', totalPage);
@@ -108,20 +108,65 @@ export default function CarsList() {
     })),
   ];
 
-  // const carRentalPriceList = [
-  //   { value: 'all', label: 'All car rental prices' },
-  //   ...ascendingPrices.map((rentalPrice) => ({
-  //     value: parseInt(rentalPrice, 10), // Перетворення рядкового значення у число
-  //     label: `${rentalPrice}`,
-  //   })),
-  // ];
+  // const handleSearchButtonClick = (e) => {
+  //   console.log('EVENT ===>', e);
+  //   e.preventDefault();
+
+  //   let filteredCars = cars;
+
+  //   if (inputQueryFrom === '' && inputQueryTo !== '') {
+  //     filteredCars = filteredCars.filter(
+  //       ({ mileage }) => mileage <= parseInt(inputQueryTo, 10)
+  //     );
+  //   }
+
+  //   if (inputQueryFrom !== '' && inputQueryTo === '') {
+  //     filteredCars = filteredCars.filter(
+  //       ({ mileage }) => mileage >= parseInt(inputQueryFrom, 10)
+  //     );
+  //   }
+
+  //   if (inputQueryFrom > inputQueryTo && inputQueryTo !== '') {
+  //     toast.error('Mileage is incorrect! Please try again', {
+  //       position: 'top-right',
+  //       theme: 'colored',
+  //     });
+  //     return;
+  //   }
+  //   if (inputQueryFrom !== '' && inputQueryTo !== '') {
+  //     const mileageFrom = parseInt(inputQueryFrom, 10);
+  //     const mileageTo = parseInt(inputQueryTo, 10);
+
+  //     filteredCars = filteredCars.filter(
+  //       ({ mileage }) => mileage >= mileageFrom && mileage <= mileageTo
+  //     );
+  //   }
+  //   // if (selectedBrand) {
+  //   //   filteredCars = filteredCars.filter(
+  //   //     (car) =>
+  //   //       selectedBrand.value === 'all' || car.make === selectedBrand.value
+  //   //   );
+  //   // }
+
+  //   // if (selectedPrice) {
+  //   //   filteredCars = filteredCars.filter(
+  //   //     (car) =>
+  //   //       selectedPrice.value === 'all' ||
+  //   //       car.rentalPrice.replace('$', '') === selectedPrice.value
+  //   //   );
+  //   // }
+
+  //   dispatch(filteredByMileage(filteredCars));
+  //   setFilteredCarsList(filteredCars);
+  //   resetForm();
+  // };
 
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
   };
 
   const handlePriceChange = (selectedOption) => {
-    console.log('selectedOption', selectedOption);
+    // console.log('selectedOption', selectedOption);
     dispatch(filteredByPrice(selectedOption));
   };
 
@@ -135,19 +180,34 @@ export default function CarsList() {
     setInputQueryTo(value);
   };
 
-  const handleSearch = (e) => {
-    console.log('EVENT ===>', e);
-    e.preventDefault();
+  const filterCars = (car) => {
+    if (inputQueryFrom > inputQueryTo && inputQueryTo !== '') {
+      toast.error('Mileage is incorrect! Please try again', {
+        position: 'top-right',
+        theme: 'colored',
+      });
+      return false;
+    }
 
-    const searchValueFrom = e.target.elements[0].value;
-    // const searchValueTo = Math.round(parseFloat(inputQueryTo));
-    dispatch(filteredByMileageFrom(searchValueFrom));
-    // dispatch(filteredByMileageTo(searchValueTo));
-    resetForm();
+    const selectedCarByBrand =
+      selectedBrand.value === 'all' || car.make === selectedBrand.value;
+
+    const selectedCarByPrice =
+      selectedPrice.value === 'all' ||
+      car.rentalPrice.replace('$', '') === selectedPrice.value;
+
+    const selectedCarByMileage =
+      (car.mileage >= parseInt(inputQueryFrom) || !inputQueryFrom) &&
+      (car.mileage <= parseInt(inputQueryTo) || !inputQueryTo);
+
+    return selectedCarByBrand && selectedCarByPrice && selectedCarByMileage;
   };
+
+  const filteredCars = cars.filter(filterCars);
 
   const resetForm = () => {
     setInputQueryFrom('');
+    setInputQueryTo('');
   };
 
   return (
@@ -158,7 +218,6 @@ export default function CarsList() {
           value={selectedBrand}
           options={carBrandList}
           onChange={handleBrandChange}
-          isLoading={true}
           placeholder="Enter the car brand"
           theme={(theme) => ({
             ...theme,
@@ -178,7 +237,6 @@ export default function CarsList() {
           value={selectedPrice}
           options={carRentalPriceList}
           onChange={handlePriceChange}
-          isLoading={true}
           placeholder="To"
           theme={(theme) => ({
             ...theme,
@@ -193,8 +251,7 @@ export default function CarsList() {
             },
           })}
         />
-
-        <form onSubmit={handleSearch}>
+        <form>
           <label>
             <InputFromEl
               type="text"
@@ -213,28 +270,19 @@ export default function CarsList() {
               onChange={handleToInputChange}
             />
           </label>
-          <SearchButton type="submit">Search</SearchButton>
+          <SearchButton type="button" onClick={resetForm}>
+            Cancel
+          </SearchButton>
         </form>
       </FormWrapper>
       <Wrapper>
         <Section>
           <CarsListEl>
-            {cars
-              .filter((car) => {
-                const selectedCarByBrand =
-                  selectedBrand.value === 'all' ||
-                  car.make === selectedBrand.value;
-
-                const selectedCarByPrice =
-                  selectedPrice.value === 'all' ||
-                  car.rentalPrice.replace('$', '') === selectedPrice.value;
-                return selectedCarByBrand && selectedCarByPrice;
-              })
-              .map((car) => (
-                <ListItem key={car.id}>
-                  <CarItem car={car} />
-                </ListItem>
-              ))}
+            {filteredCars.map((car) => (
+              <ListItem key={car.id}>
+                <CarItem car={car} />
+              </ListItem>
+            ))}
           </CarsListEl>
         </Section>
         {page <= totalPage && cars.length > 0 && (

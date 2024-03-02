@@ -5,14 +5,12 @@ const filterSlice = createSlice({
   initialState: {
     filterByBrand: { value: 'all', label: 'All car makes' },
     filterByPrice: { value: 'all', label: 'All car rental prices' },
-    filterByMileageFrom: '',
-    filterByMileageTo: '',
+    filterByMileage: '',
   },
   selectors: {
     selectByBrand: (state) => state.filterByBrand,
     selectByPrice: (state) => state.filterByPrice,
-    selectByMileageFrom: (state) => state.filterByMileageFrom,
-    selectByMileageTo: (state) => state.filterByMileageTo,
+    selectByMileage: (state) => state.filterByMileage,
   },
   reducers: {
     filteredByBrand: (state, action) => {
@@ -21,28 +19,16 @@ const filterSlice = createSlice({
     filteredByPrice: (state, action) => {
       state.filterByPrice = action.payload;
     },
-    filteredByMileageFrom: (state, action) => {
-      state.filterByMileageFrom = action.payload;
-    },
-    filteredByMileageTo: (state, action) => {
-      const roundedValue = Math.round(parseFloat(action.payload));
-      state.filterByMileageTo = roundedValue;
+    filteredByMileage: (state, action) => {
+      state.filterByMileage = action.payload;
     },
   },
 });
 
-export const {
-  filteredByBrand,
-  filteredByPrice,
-  filteredByMileageFrom,
-  filteredByMileageTo,
-} = filterSlice.actions;
+export const { filteredByBrand, filteredByPrice, filteredByMileage } =
+  filterSlice.actions;
 
-export const {
-  selectByBrand,
-  selectByPrice,
-  selectByMileageFrom,
-  selectByMileageTo,
-} = filterSlice.selectors;
+export const { selectByBrand, selectByPrice, selectByMileage } =
+  filterSlice.selectors;
 
 export default filterSlice.reducer;
