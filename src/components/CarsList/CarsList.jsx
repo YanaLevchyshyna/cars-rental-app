@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,7 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import {
   selectByBrand,
   selectByPrice,
-  // selectByMileage,
+  selectByMileageFrom,
+  selectByMileageTo,
 } from '../../redux/filterSlice';
 import {
   selectCarsList,
@@ -16,12 +17,14 @@ import {
   selectLimit,
   selectIsLoading,
 } from '../../redux/carsSlice';
+
 import {
-  // filteredByMileage,
+  filteredByMileageFrom,
   filteredByBrand,
   filteredByPrice,
-  // filteredByMileageTo,
+  filteredByMileageTo,
 } from '../../redux/filterSlice';
+
 import { loadMoreCars } from '../../redux/carsSlice';
 import { getAllCars, getCarOptions } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
@@ -42,11 +45,6 @@ import { firstSelectStyles } from '../../constants/selectStyles';
 export default function CarsList() {
   const dispatch = useDispatch();
 
-  const [inputQueryFrom, setInputQueryFrom] = useState('');
-  const [inputQueryTo, setInputQueryTo] = useState('');
-  console.log('inputQueryFrom', inputQueryFrom);
-  console.log('inputQueryTo', inputQueryTo);
-
   const cars = useSelector(selectCarsList);
   const page = useSelector(selectPage);
   const limit = useSelector(selectLimit);
@@ -56,8 +54,10 @@ export default function CarsList() {
 
   const selectedBrand = useSelector(selectByBrand);
   const selectedPrice = useSelector(selectByPrice);
-  // const query = useSelector(selectByMileage);
-  // console.log('query', query);
+  const mileageTo = useSelector(selectByMileageTo);
+  const mileageFrom = useSelector(selectByMileageFrom);
+  console.log('mileageFrom', mileageFrom);
+  console.log('mileageTo', mileageTo);
 
   const isLoading = useSelector(selectIsLoading);
 
@@ -176,16 +176,16 @@ export default function CarsList() {
 
   const handleFromInputChange = (e) => {
     const { value } = e.target;
-    setInputQueryFrom(value);
+    dispatch(filteredByMileageFrom(value));
   };
 
   const handleToInputChange = (e) => {
     const { value } = e.target;
-    setInputQueryTo(value);
+    dispatch(filteredByMileageTo(value));
   };
 
   const filterCars = (car) => {
-    if (inputQueryFrom > inputQueryTo && inputQueryTo !== '') {
+    if (mileageFrom > mileageTo && mileageTo !== '') {
       toast.error('Mileage is incorrect! Please try again', {
         position: 'top-right',
         theme: 'colored',
@@ -201,8 +201,8 @@ export default function CarsList() {
       car.rentalPrice.replace('$', '') === selectedPrice.value;
 
     const selectedCarByMileage =
-      (car.mileage >= parseInt(inputQueryFrom) || !inputQueryFrom) &&
-      (car.mileage <= parseInt(inputQueryTo) || !inputQueryTo);
+      (car.mileage >= parseInt(mileageFrom) || !mileageFrom) &&
+      (car.mileage <= parseInt(mileageTo) || !mileageTo);
 
     return selectedCarByBrand && selectedCarByPrice && selectedCarByMileage;
   };
@@ -210,8 +210,8 @@ export default function CarsList() {
   const filteredCars = cars.filter(filterCars);
 
   const resetForm = () => {
-    setInputQueryFrom('');
-    setInputQueryTo('');
+    dispatch(filteredByMileageFrom(''));
+    dispatch(filteredByMileageTo(''));
   };
 
   return (
@@ -262,7 +262,7 @@ export default function CarsList() {
               type="text"
               placeholder="From"
               name="mileageFrom"
-              value={inputQueryFrom}
+              value={mileageFrom}
               onChange={handleFromInputChange}
             />
           </label>
@@ -271,7 +271,7 @@ export default function CarsList() {
               type="text"
               placeholder="To"
               name="mileageTo"
-              value={inputQueryTo}
+              value={mileageTo}
               onChange={handleToInputChange}
             />
           </label>
