@@ -7,13 +7,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import {
   selectByBrand,
   selectByPrice,
-  selectByMileage,
+  // selectByMileage,
 } from '../../redux/filterSlice';
 import {
   selectCarsList,
   selectCarOptions,
   selectPage,
   selectLimit,
+  selectIsLoading,
 } from '../../redux/carsSlice';
 import {
   // filteredByMileage,
@@ -24,6 +25,7 @@ import {
 import { loadMoreCars } from '../../redux/carsSlice';
 import { getAllCars, getCarOptions } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
+import Loader from '../Loader/Loader';
 import {
   Wrapper,
   Section,
@@ -54,8 +56,10 @@ export default function CarsList() {
 
   const selectedBrand = useSelector(selectByBrand);
   const selectedPrice = useSelector(selectByPrice);
-  const query = useSelector(selectByMileage);
-  console.log('query', query);
+  // const query = useSelector(selectByMileage);
+  // console.log('query', query);
+
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(getCarOptions());
@@ -212,6 +216,7 @@ export default function CarsList() {
 
   return (
     <>
+      {isLoading && <Loader />}
       <FormWrapper>
         <Select
           styles={firstSelectStyles}

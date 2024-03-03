@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux';
 
 import { selectFavorite } from '../../redux/favoriteSlice';
+import { selectIsLoading } from '../../redux/carsSlice';
 
+import Loader from '../../components/Loader/Loader';
 import CarItem from '../../components/CarItem/CarItem';
 import car from '../../static/media/sport-vintage.png';
 import {
@@ -15,6 +17,7 @@ import {
 function FavoriteCars() {
   const favoriteCar = useSelector(selectFavorite);
   // console.log('Favorite', favoriteCar);
+  const isLoading = useSelector(selectIsLoading);
 
   if (favoriteCar.length < 1) {
     return (
@@ -27,6 +30,7 @@ function FavoriteCars() {
 
   return (
     <>
+      {isLoading && <Loader />}
       <main>
         <Title>Your favorite cars</Title>
         <Section>
