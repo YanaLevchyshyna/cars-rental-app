@@ -6,7 +6,7 @@ export const Section = styled.section`
 
 export const Title = styled.h1`
   text-align: center;
-  margin: 35px 0px;
+  margin-top: 35px;
 `;
 
 export const CarsList = styled.ul`

@@ -5,7 +5,7 @@ import { selectIsLoading } from '../../redux/carsSlice';
 
 import Loader from '../../components/Loader/Loader';
 import CarItem from '../../components/CarItem/CarItem';
-import car from '../../static/media/sport-vintage.png';
+import car from '../../static/media/car-favorite-image.jpeg';
 import {
   Section,
   CarsList,
