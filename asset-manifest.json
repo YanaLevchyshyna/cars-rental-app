@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/cars-rental-app/static/css/main.ebb3c90a.css",
-    "main.js": "/cars-rental-app/static/js/main.f53f439b.js",
+    "main.js": "/cars-rental-app/static/js/main.b15753f8.js",
     "static/js/387.d8a7e58f.chunk.js": "/cars-rental-app/static/js/387.d8a7e58f.chunk.js",
     "static/css/707.876a5f4c.chunk.css": "/cars-rental-app/static/css/707.876a5f4c.chunk.css",
-    "static/js/707.063bb227.chunk.js": "/cars-rental-app/static/js/707.063bb227.chunk.js",
+    "static/js/707.15af435b.chunk.js": "/cars-rental-app/static/js/707.15af435b.chunk.js",
     "static/js/544.184b78f7.chunk.js": "/cars-rental-app/static/js/544.184b78f7.chunk.js",
     "static/js/692.395d0cc2.chunk.js": "/cars-rental-app/static/js/692.395d0cc2.chunk.js",
     "static/js/147.a503d83d.chunk.js": "/cars-rental-app/static/js/147.a503d83d.chunk.js",
@@ -14,16 +14,16 @@
     "index.html": "/cars-rental-app/index.html",
     "static/media/sprite.svg": "/cars-rental-app/static/media/sprite.8bf9d94f50ccb294bd7d21d7df41ffff.svg",
     "main.ebb3c90a.css.map": "/cars-rental-app/static/css/main.ebb3c90a.css.map",
-    "main.f53f439b.js.map": "/cars-rental-app/static/js/main.f53f439b.js.map",
+    "main.b15753f8.js.map": "/cars-rental-app/static/js/main.b15753f8.js.map",
     "387.d8a7e58f.chunk.js.map": "/cars-rental-app/static/js/387.d8a7e58f.chunk.js.map",
     "707.876a5f4c.chunk.css.map": "/cars-rental-app/static/css/707.876a5f4c.chunk.css.map",
-    "707.063bb227.chunk.js.map": "/cars-rental-app/static/js/707.063bb227.chunk.js.map",
+    "707.15af435b.chunk.js.map": "/cars-rental-app/static/js/707.15af435b.chunk.js.map",
     "544.184b78f7.chunk.js.map": "/cars-rental-app/static/js/544.184b78f7.chunk.js.map",
     "692.395d0cc2.chunk.js.map": "/cars-rental-app/static/js/692.395d0cc2.chunk.js.map",
     "147.a503d83d.chunk.js.map": "/cars-rental-app/static/js/147.a503d83d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ebb3c90a.css",
-    "static/js/main.f53f439b.js"
+    "static/js/main.b15753f8.js"
   ]
 }
