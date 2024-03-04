@@ -309,7 +309,8 @@ export const Wheel = styled(СarDetail)`
       ${borderColor} 51%
     ),
     ${backgroundColor};
-  animation-name: ${spinAnimation} 0.5s linear infinite;
+  transform-origin: center;
+  animation: ${spinAnimation} 2s linear infinite;
 `;
 
 export const Wheel2 = styled(Wheel)`

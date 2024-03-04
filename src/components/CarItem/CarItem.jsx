@@ -40,6 +40,7 @@ export default function CarItem({ car }) {
   };
 
   const {
+    id,
     make,
     model,
     year,
@@ -86,7 +87,7 @@ export default function CarItem({ car }) {
       <Button type="button" onClick={toggleModal}>
         Learn more
       </Button>
-      {showModal && <Modal onClick={toggleModal} car={car} />}
+      {showModal && <Modal onClick={toggleModal} car={car} key={id} />}
     </>
   );
 }
