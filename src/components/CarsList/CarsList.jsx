@@ -28,7 +28,8 @@ import {
 import { loadMoreCars } from '../../redux/carsSlice';
 import { getAllCars, getCarOptions } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
-import Loader from '../Loader/Loader';
+// import Loader from '../Loader/Loader';
+import CarLoader from '../CarLoader/CarLoader';
 import {
   Wrapper,
   Section,
@@ -56,8 +57,6 @@ export default function CarsList() {
   const selectedPrice = useSelector(selectByPrice);
   const mileageTo = useSelector(selectByMileageTo);
   const mileageFrom = useSelector(selectByMileageFrom);
-  console.log('mileageFrom', mileageFrom);
-  console.log('mileageTo', mileageTo);
 
   const isLoading = useSelector(selectIsLoading);
 
@@ -216,7 +215,7 @@ export default function CarsList() {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {isLoading && <CarLoader />}
       <FormWrapper>
         <Select
           styles={firstSelectStyles}

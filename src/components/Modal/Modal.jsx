@@ -26,7 +26,7 @@ import {
 const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal({ onClick, car }) {
-  console.log('C A R ==>', car);
+  // console.log('C A R ==>', car);
 
   const {
     make,
