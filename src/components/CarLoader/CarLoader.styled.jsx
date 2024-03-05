@@ -21,43 +21,6 @@ const backgroundColor = '#332e2e';
 const borderRadiusBig = '6px';
 const fontSizeHeader = '16px';
 const carColor = borderColor;
-// const spinDeg = '36deg';
-
-const spinAnimation = keyframes`
-  0% {
-    transform: translate(2px, 1px) rotate(36deg * 0);
-  }
-  10% {
-    transform: translate(-1px, -3px) rotate(36deg * 1);
-  }
-  20% {
-    transform: translate(-2px, 0px) rotate(36deg * 2);
-  }
-  30% {
-    transform: translate(1px, 2px) rotate(36deg * 3);
-  }
-  40% {
-    transform: translate(1px, -1px) rotate(36deg * 4);
-  }
-  50% {
-    transform: translate(-1px, 3px) rotate(36deg * 5);
-  }
-  60% {
-    transform: translate(-1px, 1px) rotate(36deg * 6);
-  }
-  70% {
-    transform: translate(3px, 1px) rotate(36deg * 7);
-  }
-  80% {
-    transform: translate(-2px, -1px) rotate(36deg * 8);
-  }
-  90% {
-    transform: translate(2px, 1px) rotate(36deg * 9);
-  }
-  100% {
-    transform: translate(1px, -2px) rotate(36deg * 10);
-  }
-`;
 
 const speed = keyframes`
   0% {
@@ -260,14 +223,26 @@ export const Front = styled.div`
   border-bottom-right-radius: 10px;
 `;
 
-const СarDetail = styled.div`
-  position: absolute;
-  display: block;
-  background: ${carColor};
-  animation: ${speed} 0.5s linear infinite;
+const rotate360 = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: grey;
+  animation: spin 1s linear infinite;
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
-export const Wheel = styled(СarDetail)`
+export const Wheel = styled(rotate360)`
+  position: absolute;
+  display: block;
+
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -309,8 +284,6 @@ export const Wheel = styled(СarDetail)`
       ${borderColor} 51%
     ),
     ${backgroundColor};
-  transform-origin: center;
-  animation: ${spinAnimation} 2s linear infinite;
 `;
 
 export const Wheel2 = styled(Wheel)`

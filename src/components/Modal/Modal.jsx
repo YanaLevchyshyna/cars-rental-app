@@ -102,8 +102,8 @@ export default function Modal({ onClick, car }) {
           <Description>{description}</Description>
           <Paragraph>Accessories and functionalities:</Paragraph>
           <ThirdList>
-            {accessories?.map((item) => (
-              <li>{item}</li>
+            {accessories?.map((item, index) => (
+              <li key={`accessory_${index}`}>{item}</li>
             ))}
             {functionalities?.map((item) => (
               <li>{item}</li>
