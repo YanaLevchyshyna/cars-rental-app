@@ -212,7 +212,7 @@ export const FourthList = styled.ul`
       white-space: nowrap;
     }
 
-    &:nth-last-child(-n + 2) {
+    &:nth-last-of-type(-n + 2) {
       margin-bottom: 0;
     }
 

@@ -105,8 +105,8 @@ export default function Modal({ onClick, car }) {
             {accessories?.map((item, index) => (
               <li key={`accessory_${index}`}>{item}</li>
             ))}
-            {functionalities?.map((item) => (
-              <li>{item}</li>
+            {functionalities?.map((item, index) => (
+              <li key={`functionality_${index}`}>{item}</li>
             ))}
           </ThirdList>
           <Paragraph>Rental Conditions:</Paragraph>
