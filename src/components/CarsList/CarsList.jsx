@@ -41,6 +41,9 @@ import {
   SearchButton,
   Button,
   Form,
+  SpanBrand,
+  SpanPrice,
+  SpanMl,
 } from './CarsList.styled';
 import { firstSelectStyles } from '../../constants/selectStyles';
 
@@ -163,6 +166,7 @@ export default function CarsList() {
       {isLoading && <CarLoader />}
       <FormWrapper>
         <Form>
+          <SpanBrand>Car brand</SpanBrand>
           <Select
             styles={firstSelectStyles}
             value={selectedBrand}
@@ -181,6 +185,7 @@ export default function CarsList() {
               },
             })}
           />
+          <SpanPrice>Price/ 1 hour</SpanPrice>
           <Select
             styles={firstSelectStyles}
             value={selectedPrice}
@@ -199,7 +204,7 @@ export default function CarsList() {
               },
             })}
           />
-
+          <SpanMl>Сar mileage / km</SpanMl>
           <label>
             <InputFromEl
               type="text"

@@ -34,6 +34,7 @@ export const customStyles = {
   }),
   container: (defaultStyles, state) => ({
     ...defaultStyles,
+    marginRight: '18px',
     color: '#121417',
     backgroundColor: '#F7F7FB',
     borderRadius: '14px',

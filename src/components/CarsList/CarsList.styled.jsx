@@ -77,13 +77,13 @@ export const FormWrapper = styled.div`
 `;
 
 export const Form = styled.form`
+  position: relative;
   display: flex;
 `;
 
 export const InputFromEl = styled.input`
   padding: 0;
   padding-left: 24px;
-  margin-left: 18px;
 
   width: 136px;
   height: 48px;
@@ -135,4 +135,36 @@ export const SearchButton = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.colors.secondary};
   }
+`;
+
+export const SpanBrand = styled.span`
+  position: absolute;
+  top: -25px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  color: #8a8a89;
+`;
+
+export const SpanPrice = styled.span`
+  position: absolute;
+  top: -25px;
+  left: 25.5%;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  color: #8a8a89;
+`;
+
+export const SpanMl = styled.span`
+  position: absolute;
+  top: -25px;
+  right: 38%;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  color: #8a8a89;
 `;
