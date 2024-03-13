@@ -23,6 +23,7 @@ import {
   filteredByBrand,
   filteredByPrice,
   filteredByMileageTo,
+  resetAllFilters,
 } from '../../redux/filterSlice';
 
 import { loadMoreCars } from '../../redux/carsSlice';
@@ -39,6 +40,7 @@ import {
   InputToEl,
   SearchButton,
   Button,
+  Form,
 } from './CarsList.styled';
 import { firstSelectStyles } from '../../constants/selectStyles';
 
@@ -74,10 +76,6 @@ export default function CarsList() {
     );
   }, [selectedBrand, selectedPrice, page, limit, dispatch]);
 
-  // useEffect(() => {
-
-  // })
-
   const totalPage = Math.floor(cars.length / limit);
   // console.log('totalPage', totalPage);
 
@@ -86,7 +84,7 @@ export default function CarsList() {
   // console.log('uniqueCarMakes', uniqueCarMakes);
 
   const carBrandList = [
-    { value: 'all', label: 'All car brands' },
+    // { value: 'all', label: 'All car makes' },
     ...uniqueCarMakes.map((make) => ({
       value: make,
       label: make,
@@ -103,65 +101,12 @@ export default function CarsList() {
   );
 
   const carRentalPriceList = [
-    { value: 'all', label: 'All car rental prices' },
+    // { value: 'all', label: 'All car rental prices' },
     ...ascendingPrices.map((rentalPrice) => ({
       value: `${rentalPrice}`,
       label: `$${rentalPrice}`,
     })),
   ];
-
-  // const handleSearchButtonClick = (e) => {
-  //   console.log('EVENT ===>', e);
-  //   e.preventDefault();
-
-  //   let filteredCars = cars;
-
-  //   if (inputQueryFrom === '' && inputQueryTo !== '') {
-  //     filteredCars = filteredCars.filter(
-  //       ({ mileage }) => mileage <= parseInt(inputQueryTo, 10)
-  //     );
-  //   }
-
-  //   if (inputQueryFrom !== '' && inputQueryTo === '') {
-  //     filteredCars = filteredCars.filter(
-  //       ({ mileage }) => mileage >= parseInt(inputQueryFrom, 10)
-  //     );
-  //   }
-
-  //   if (inputQueryFrom > inputQueryTo && inputQueryTo !== '') {
-  //     toast.error('Mileage is incorrect! Please try again', {
-  //       position: 'top-right',
-  //       theme: 'colored',
-  //     });
-  //     return;
-  //   }
-  //   if (inputQueryFrom !== '' && inputQueryTo !== '') {
-  //     const mileageFrom = parseInt(inputQueryFrom, 10);
-  //     const mileageTo = parseInt(inputQueryTo, 10);
-
-  //     filteredCars = filteredCars.filter(
-  //       ({ mileage }) => mileage >= mileageFrom && mileage <= mileageTo
-  //     );
-  //   }
-  //   // if (selectedBrand) {
-  //   //   filteredCars = filteredCars.filter(
-  //   //     (car) =>
-  //   //       selectedBrand.value === 'all' || car.make === selectedBrand.value
-  //   //   );
-  //   // }
-
-  //   // if (selectedPrice) {
-  //   //   filteredCars = filteredCars.filter(
-  //   //     (car) =>
-  //   //       selectedPrice.value === 'all' ||
-  //   //       car.rentalPrice.replace('$', '') === selectedPrice.value
-  //   //   );
-  //   // }
-
-  //   dispatch(filteredByMileage(filteredCars));
-  //   setFilteredCarsList(filteredCars);
-  //   resetForm();
-  // };
 
   const handleBrandChange = (selectedOption) => {
     dispatch(filteredByBrand(selectedOption));
@@ -209,53 +154,52 @@ export default function CarsList() {
   const filteredCars = cars.filter(filterCars);
 
   const resetForm = () => {
-    dispatch(filteredByMileageFrom(''));
-    dispatch(filteredByMileageTo(''));
+    dispatch(resetAllFilters());
+    dispatch(loadMoreCars({ page: 1, limit }));
   };
 
   return (
     <>
       {isLoading && <CarLoader />}
       <FormWrapper>
-        <Select
-          styles={firstSelectStyles}
-          value={selectedBrand}
-          options={carBrandList}
-          onChange={handleBrandChange}
-          placeholder="Enter the car brand"
-          theme={(theme) => ({
-            ...theme,
-            colors: {
-              ...theme.colors,
-              primary50: '#121417', //колір фону коли натискаємо на селект в меню
-              primary: 'transparent',
-              neutral20: 'transparent', // дефолтний бордер
-              neutral30: 'transparent', // дефолтний ховер бордер
-              neutral50: '#121417', // колір плейсхолдера
-              neutral80: '#121417',
-            },
-          })}
-        />
-        <Select
-          styles={firstSelectStyles}
-          value={selectedPrice}
-          options={carRentalPriceList}
-          onChange={handlePriceChange}
-          placeholder="To"
-          theme={(theme) => ({
-            ...theme,
-            colors: {
-              ...theme.colors,
-              primary50: '#121417', //колір фону коли натискаємо на селект в меню
-              primary: 'transparent',
-              neutral20: 'transparent', // дефолтний бордер
-              neutral30: 'transparent', // дефолтний ховер бордер
-              neutral50: '#121417', // колір плейсхолдера
-              neutral80: '#121417',
-            },
-          })}
-        />
-        <form>
+        <Form>
+          <Select
+            styles={firstSelectStyles}
+            value={selectedBrand}
+            options={carBrandList}
+            onChange={handleBrandChange}
+            placeholder="Enter the car brand"
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary: 'transparent',
+                neutral20: 'transparent', // дефолтний бордер
+                neutral30: 'transparent', // дефолтний ховер бордер
+                neutral50: '#121417', // колір плейсхолдера
+                neutral80: '#121417',
+              },
+            })}
+          />
+          <Select
+            styles={firstSelectStyles}
+            value={selectedPrice}
+            options={carRentalPriceList}
+            onChange={handlePriceChange}
+            placeholder="To"
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary: 'transparent',
+                neutral20: 'transparent', // дефолтний бордер
+                neutral30: 'transparent', // дефолтний ховер бордер
+                neutral50: '#121417', // колір плейсхолдера
+                neutral80: '#121417',
+              },
+            })}
+          />
+
           <label>
             <InputFromEl
               type="text"
@@ -277,7 +221,7 @@ export default function CarsList() {
           <SearchButton type="button" onClick={resetForm}>
             Cancel
           </SearchButton>
-        </form>
+        </Form>
       </FormWrapper>
       <Wrapper>
         <Section>

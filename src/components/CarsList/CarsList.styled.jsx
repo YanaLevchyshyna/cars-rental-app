@@ -71,15 +71,19 @@ export const SelectWrapper = styled.div`
 
 export const FormWrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 18px;
+  align-items: center;
   margin-top: 50px;
+`;
+
+export const Form = styled.form`
+  display: flex;
 `;
 
 export const InputFromEl = styled.input`
   padding: 0;
   padding-left: 24px;
+  margin-left: 18px;
 
   width: 136px;
   height: 48px;

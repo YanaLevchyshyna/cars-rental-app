@@ -76,29 +76,3 @@ export const firstSelectStyles = {
     fontWeight: '500',
   }),
 };
-
-export const secondSelectStyles = {
-  ...customStyles,
-  control: (defaultStyles) => ({
-    ...defaultStyles,
-    cursor: 'pointer',
-    background: 'transparent',
-    appearance: 'none', // Removing default appearance
-    WebkitAppearance: 'none',
-    MozAppearance: 'none',
-
-    '@media screen and (min-width: 375px)': {
-      width: '173px',
-      height: '46px',
-      fontSize: '14px',
-      lineHeight: '1.28',
-    },
-
-    '@media screen and (min-width: 768px)': {
-      width: '204px',
-      height: '52px',
-      fontSize: '16px',
-      lineHeight: '1.5',
-    },
-  }),
-};

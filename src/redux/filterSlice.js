@@ -27,6 +27,12 @@ const filterSlice = createSlice({
     filteredByMileageTo: (state, action) => {
       state.filterByMileageTo = action.payload;
     },
+    resetAllFilters: (state) => {
+      state.filterByBrand = { value: 'all', label: 'All car makes' };
+      state.filterByPrice = { value: 'all', label: 'All car rental prices' };
+      state.filterByMileageFrom = '';
+      state.filterByMileageTo = '';
+    },
   },
 });
 
@@ -35,6 +41,7 @@ export const {
   filteredByPrice,
   filteredByMileageFrom,
   filteredByMileageTo,
+  resetAllFilters,
 } = filterSlice.actions;
 
 export const {
