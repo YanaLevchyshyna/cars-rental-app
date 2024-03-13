@@ -28,7 +28,6 @@ import {
 import { loadMoreCars } from '../../redux/carsSlice';
 import { getAllCars, getCarOptions } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
-// import Loader from '../Loader/Loader';
 import CarLoader from '../CarLoader/CarLoader';
 import {
   Wrapper,
@@ -188,6 +187,7 @@ export default function CarsList() {
       toast.error('Mileage is incorrect! Please try again', {
         position: 'top-right',
         theme: 'colored',
+        toastId: 'mileageErrorToast',
       });
       return false;
     }
