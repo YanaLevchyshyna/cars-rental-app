@@ -231,11 +231,15 @@ export default function CarsList() {
       <Wrapper>
         <Section>
           <CarsListEl>
-            {filteredCars.map((car) => (
-              <ListItem key={car.id}>
-                <CarItem car={car} />
-              </ListItem>
-            ))}
+            {filteredCars.length > 0 ? (
+              filteredCars.map((car) => (
+                <ListItem key={car.id}>
+                  <CarItem car={car} />
+                </ListItem>
+              ))
+            ) : (
+              <p>No cars found based on your criteria. Please try again.</p>
+            )}
           </CarsListEl>
         </Section>
         {page <= totalPage && cars.length > 0 && (
