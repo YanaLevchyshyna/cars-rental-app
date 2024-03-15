@@ -30,6 +30,7 @@ import { loadMoreCars } from '../../redux/carsSlice';
 import { getAllCars, getCarOptions } from '../../redux/operations';
 import CarItem from '../CarItem/CarItem';
 import CarLoader from '../CarLoader/CarLoader';
+import NoCarsSearchResult from '../NoCarsSearchResults/NoSearchResults';
 import {
   Wrapper,
   Section,
@@ -238,7 +239,7 @@ export default function CarsList() {
                 </ListItem>
               ))
             ) : (
-              <p>No cars found based on your criteria. Please try again.</p>
+              <NoCarsSearchResult />
             )}
           </CarsListEl>
         </Section>

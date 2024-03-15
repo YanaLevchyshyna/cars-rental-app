@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
   @media screen and (min-width: 375px) {
@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Text = styled.p`
-  color: rgba(239, 237, 232, 0.3);
+  color: #121417;
 
   @media screen and (min-width: 375px) {
     display: inline-block;
@@ -29,8 +29,8 @@ export const Text = styled.p`
   }
 `;
 
-export const OrangeTextSpan = styled.span`
-  color: var(--color-main-one);
+export const BlueTextSpan = styled.span`
+  color: #0b44cd;
 
   @media screen and (min-width: 375px) {
     display: inline-block;
@@ -44,8 +44,8 @@ export const OrangeTextSpan = styled.span`
   }
 `;
 
-export const OrangeTextBlock = styled.p`
-  color: var(--color-main-one);
+export const BlueTextBlock = styled.p`
+  color: #0b44cd;
 
   @media screen and (min-width: 375px) {
     display: inline-block;
