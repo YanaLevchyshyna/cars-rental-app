@@ -71,14 +71,39 @@ export const SelectWrapper = styled.div`
 
 export const FormWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 35px;
+  @media screen and (min-width: 375px) {
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-top: 50px;
+  }
 `;
 
 export const Form = styled.form`
   position: relative;
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  @media screen and (min-width: 375px) {
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-top: 50px;
+    flex-direction: row;
+    gap: 0;
+  }
 `;
 
 export const InputFromEl = styled.input`
